@@ -146,7 +146,7 @@ return {
 			-- Telescope extension for Zoxide
 			'jvgrootveld/telescope-zoxide',
 			-- Browse synonyms for a word
-			'skogix/telescope-thesaurus.nvim',
+			'rafi/telescope-thesaurus.nvim',
 		},
 		config = function(_, opts)
 			require('telescope').setup(opts)

@@ -1,7 +1,4 @@
 -- LSP: Initialize
--- https://github.com/rafi/vim-config
-
--- This is part of LazyVim's code, with my modifications.
 -- See: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/init.lua
 
 return {
@@ -133,13 +130,13 @@ return {
 
 			-- Setup keymaps.
 			LazyVim.lsp.on_attach(function(client, buffer)
-				require('rafi.plugins.lsp.keymaps').on_attach(client, buffer)
+				require('skogix.plugins.lsp.keymaps').on_attach(client, buffer)
 			end)
 
 
 			LazyVim.lsp.setup()
 			LazyVim.lsp.on_dynamic_capability(
-				require('rafi.plugins.lsp.keymaps').on_attach
+				require('skogix.plugins.lsp.keymaps').on_attach
 			)
 
 			LazyVim.lsp.words.setup(opts.document_highlight)

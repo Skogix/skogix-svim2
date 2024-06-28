@@ -1,0 +1,11 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.lang.json",
+    "skogix.plugins.extras.lang.markdown",
+    "skogix.plugins.extras.lang.tmux"
+  ],
+  "news": [
+
+  ],
+  "version": 6
+}

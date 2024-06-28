@@ -56,3 +56,54 @@ map({ 'n', 'x' }, '<leader>p', [["+p]]) -- paste from system clipboard
 -- map('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 -- map('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 -- map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- ------------------------------------------------------------------------- }}}
+-- {{{ Folding commands.
+
+-- Author: Karl Yngve Lervåg
+--    See: https://github.com/lervag/dotnvim
+
+-- Close all fold except the current one.
+map("n", "zv", "zMzvzz", {
+  desc = "Close all folds except the current one",
+})
+
+-- Close current fold when open. Always open next fold.
+map("n", "zj", "zcjzOzz", {
+  desc = "Close current fold when open. Always open next fold.",
+})
+
+-- Close current fold when open. Always open previous fold.
+map("n", "zk", "zckzOzz", {
+  desc = "Close current fold when open. Always open previous fold.",
+})
+
+-- Better paste
+-- remap "p" in visual mode to delete the highlighted text without overwriting your yanked/copied text, and then paste the content from the unnamed register.
+map("v", "p", '"_dP', opts)
+
+-- Visual --
+-- Stay in indent mode
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
+
+-- Move live up or down
+-- moving
+map("n", "<A-Down>", ":m .+1<CR>", opts)
+map("n", "<A-Up>", ":m .-2<CR>", opts)
+map("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", opts)
+map("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", opts)
+map("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
+map("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
+
+-- -- Gitsigns
+-- -- Add toggle gitsigns blame line
+-- if Util.has("gitsigns.nvim") then
+--   keymap("n", "<leader>ub", "<cmd>lua require('gitsigns').toggle_current_line_blame()<CR>", {
+--     desc = "Toggle current line blame",
+--   })
+-- end
+--
+-- -- Blame line
+-- keymap("n", "<leader>gl", LazyVim.lazygit.blame_line, { desc = "Git Blame Line" })
+

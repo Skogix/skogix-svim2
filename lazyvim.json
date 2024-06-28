@@ -1,19 +1,8 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.clangd",
-    "lazyvim.plugins.extras.lang.cmake",
-    "lazyvim.plugins.extras.lang.git",
     "lazyvim.plugins.extras.lang.json",
-    "lazyvim.plugins.extras.lang.omnisharp",
-    "lazyvim.plugins.extras.ui.treesitter-context",
-    "lazyvim.plugins.extras.util.dot",
-    "lazyvim.plugins.extras.util.project",
-    "skogix.plugins.extras.coding.luasnip",
-    "skogix.plugins.extras.colorscheme.catppuccin",
-    "skogix.plugins.extras.editor.copilot",
-    "skogix.plugins.extras.editor.harpoon2",
     "skogix.plugins.extras.lang.markdown",
-    "skogix.plugins.extras.lsp.gtd"
+    "skogix.plugins.extras.lang.tmux"
   ],
   "news": [
 

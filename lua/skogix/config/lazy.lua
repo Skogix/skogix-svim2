@@ -24,24 +24,24 @@ end
 -- Validate if lua/plugins/ or lua/plugins.lua exist.
 local user_path = vim.fn.stdpath("config") .. "/lua"
 local has_user_plugins = vim.uv.fs_stat(user_path .. "/plugins") ~= nil
-	or vim.uv.fs_stat(user_path .. "/plugins.lua") ~= nil
+    or vim.uv.fs_stat(user_path .. "/plugins.lua") ~= nil
 
 -- Start lazy.nvim plugin manager.
 require("lazy").setup(vim.tbl_extend("keep", user_lazy_opts, {
 	spec = {
 		{ import = "skogix.plugins.lazyvim" },
 		{ import = "skogix.plugins" },
-		-- { import = 'skogix.plugins.cmp' },
-		-- { import = 'skogix.plugins.colorscheme' },
-		-- { import = 'skogix.plugins.git' },
-		-- { import = 'skogix.plugins.harpoon' },
-		-- { import = 'skogix.plugins.init' },
-		-- { import = 'skogix.plugins.lazyvim' },
-		-- { import = 'skogix.plugins.neo-tree' },
-		-- { import = 'skogix.plugins.neorg' },
-		-- { import = 'skogix.plugins.telescope' },
-		-- { import = 'skogix.plugins.treesitter' },
-		-- { import = 'skogix.plugins.which-key' },
+		-- { import = "skogix.plugins.init" },
+		-- { import = "skogix.plugins.lsp" },
+		-- { import = "skogix.plugins.cmp" },
+		-- { import = "skogix.plugins.neo-tree" },
+		-- { import = "skogix.plugins.treesitter" },
+		-- { import = "skogix.plugins.telescope" },
+		-- { import = "skogix.plugins.which-key" },
+		-- { import = "skogix.plugins.harpoon" },
+		-- { import = "skogix.plugins.git" },
+		-- { import = "skogix.plugins.colorscheme" },
+		-- { import = "skogix.plugins.neorg" },
 		{ import = "lazyvim.plugins.xtras" },
 		has_user_plugins and { import = "plugins" } or nil,
 	},

@@ -48,13 +48,13 @@ return {
 			end,
 			desc = '[neotree] (root)',
 		},
-		{
-			'<leader>E',
-			function()
-				require('neo-tree.command').execute({ toggle = true, dir = vim.uv.cwd() })
-			end,
-			desc = '[neotree] (current)',
-		},
+		-- {
+		-- 	'<leader>E',
+		-- 	function()
+		-- 		require('neo-tree.command').execute({ toggle = true, dir = vim.uv.cwd() })
+		-- 	end,
+		-- 	desc = '[neotree] (current)',
+		-- },
 		-- { '<LocalLeader>e', '<leader>fe', desc = 'Explorer NeoTree (Root Dir)', remap = true },
 		-- {
 		-- 	'<LocalLeader>a',

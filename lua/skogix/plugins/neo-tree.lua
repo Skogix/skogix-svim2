@@ -42,53 +42,53 @@ return {
 	-- stylua: ignore
 	keys = {
 		{
-			'<leader>fe',
+			'<leader>e',
 			function()
 				require('neo-tree.command').execute({ toggle = true, dir = LazyVim.root() })
 			end,
-			desc = 'Explorer NeoTree (Root Dir)',
+			desc = '[neotree] (root)',
 		},
 		{
-			'<leader>fE',
+			'<leader>E',
 			function()
 				require('neo-tree.command').execute({ toggle = true, dir = vim.uv.cwd() })
 			end,
-			desc = 'Explorer NeoTree (cwd)',
+			desc = '[neotree] (current)',
 		},
-		{ '<LocalLeader>e', '<leader>fe', desc = 'Explorer NeoTree (Root Dir)', remap = true },
-		{
-			'<LocalLeader>a',
-			function()
-				require('neo-tree.command').execute({
-					reveal = true,
-					dir = LazyVim.root()
-				})
-			end,
-			desc = 'Explorer NeoTree Reveal',
-		},
-		{ '<leader>e', '<leader>fe', desc = 'Explorer NeoTree (Root Dir)', remap = true },
-		{ '<leader>E', '<leader>fE', desc = 'Explorer NeoTree (cwd)', remap = true },
-		{
-			'<leader>ge',
-			function()
-				require('neo-tree.command').execute({ source = 'git_status', toggle = true })
-			end,
-			desc = 'Git Explorer',
-		},
-		{
-			'<leader>be',
-			function()
-				require('neo-tree.command').execute({ source = 'buffers', toggle = true })
-			end,
-			desc = 'Buffer Explorer',
-		},
-		{
-			'<leader>xe',
-			function()
-				require('neo-tree.command').execute({ source = 'document_symbols', toggle = true })
-			end,
-			desc = 'Document Explorer',
-		},
+		-- { '<LocalLeader>e', '<leader>fe', desc = 'Explorer NeoTree (Root Dir)', remap = true },
+		-- {
+		-- 	'<LocalLeader>a',
+		-- 	function()
+		-- 		require('neo-tree.command').execute({
+		-- 			reveal = true,
+		-- 			dir = LazyVim.root()
+		-- 		})
+		-- 	end,
+		-- 	desc = 'Explorer NeoTree Reveal',
+		-- },
+		-- { '<leader>e', '<leader>fe', desc = '[neotree] (root)', remap = true },
+		-- { '<leader>E', '<leader>fE', desc = '[neotree] (current)', remap = true },
+		-- {
+		-- 	'<leader>ge',
+		-- 	function()
+		-- 		require('neo-tree.command').execute({ source = 'git_status', toggle = true })
+		-- 	end,
+		-- 	desc = 'Git Explorer',
+		-- },
+		-- {
+		-- 	'<leader>be',
+		-- 	function()
+		-- 		require('neo-tree.command').execute({ source = 'buffers', toggle = true })
+		-- 	end,
+		-- 	desc = 'Buffer Explorer',
+		-- },
+		-- {
+		-- 	'<leader>xe',
+		-- 	function()
+		-- 		require('neo-tree.command').execute({ source = 'document_symbols', toggle = true })
+		-- 	end,
+		-- 	desc = 'Document Explorer',
+		-- },
 	},
 	deactivate = function()
 		vim.cmd([[Neotree close]])

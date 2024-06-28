@@ -1,5 +1,4 @@
 return {
-
 	-- LazyVim framework.
 	{
 		'LazyVim/LazyVim',

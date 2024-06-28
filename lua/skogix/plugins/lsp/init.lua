@@ -303,7 +303,7 @@ return {
 		'williamboman/mason.nvim',
 		cmd = 'Mason',
 		build = ':MasonUpdate',
-		keys = { { '<leader>mm', '<cmd>Mason<cr>', desc = 'Mason' } },
+		-- keys = { { '<leader>mm', '<cmd>Mason<cr>', desc = 'Mason' } },
 		opts = {
 			ensure_installed = {},
 			ui = {

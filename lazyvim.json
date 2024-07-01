@@ -1,8 +1,7 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.json",
-    "skogix.plugins.extras.lang.markdown",
-    "skogix.plugins.extras.lang.tmux"
+    "skogix.plugins.extras.skogix.copilot",
+    "skogix.plugins.extras.skogix.copilot-chat"
   ],
   "news": [
 

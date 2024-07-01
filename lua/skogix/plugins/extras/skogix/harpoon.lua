@@ -1,3 +1,4 @@
+local bindings = require('skogix.keymaps.harpoon')
 return {
   {
     "ThePrimeagen/harpoon",
@@ -25,11 +26,11 @@ return {
 
       ---@diagnostic disable-next-line: missing-parameter
       harpoon.setup(options)
-      for i = 1, 4 do
-        vim.keymap.set("n", "<leader>" .. i, function()
-          require("harpoon"):list():select(i)
-        end, { noremap = true, silent = true, desc = "Harpoon select " .. i })
-      end
+      -- for i = 1, 4 do
+      --   vim.keymap.set("n", "<leader>" .. i, function()
+      --     require("harpoon"):list():select(i)
+      --   end, { noremap = true, silent = true, desc = "Harpoon select " .. i })
+      -- end
 
       -- Telescope integration
       local tele_status_ok, _ = pcall(require, "telescope")

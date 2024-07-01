@@ -5,19 +5,28 @@
 local map = vim.keymap.set
 local wk = require('which-key')
 
+
+map('n', 'H', '<cmd>tabprevious<CR>', { desc = 'Prev tab' })
+map('n', 'L', '<cmd>tabnext<CR>', { desc = 'Next tab' })
+map('n', '<C-w>', '<cmd>wq<CR>', { desc = 'close tab' })
+
+
+
 local function open_readme()
 	local readme_path = vim.fn.globpath('.', '**/readme.norg', true, 0)[1]
 
 	if readme_path == nil then
-		readme_path = vim.fn.globpath('.', '**/readme.md', true, 1)[1]
+		readme_path = vim.fn.globpath('.', '**/README.md', true, 1)[1]
 	end
 
 	if readme_path ~= nil then
+		vim.cmd("tabnew")
 		vim.cmd("edit " .. readme_path)
 	else
 		print("Neither readme.norg nor readme.md found in the current directory.")
 	end
 end
+map('n', '<leader>tr', open_readme, { desc = '[toggle] readme' })
 
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Down' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Up' })

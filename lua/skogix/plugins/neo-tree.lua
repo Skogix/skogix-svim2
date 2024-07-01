@@ -188,7 +188,8 @@ return {
 
 				["g?"] = "show_help",
 				["<2-LeftMouse>"] = "open",
-				["<CR>"] = "open_with_window_picker",
+				-- ["<CR>"] = "open_with_window_picker",
+				["<CR>"] = "open_tabnew",
 				["l"] = "open_drop",
 				["h"] = "close_node",
 				["C"] = "close_node",

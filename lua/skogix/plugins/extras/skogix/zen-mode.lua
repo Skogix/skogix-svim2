@@ -4,7 +4,12 @@ return {
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
-    opts = {},
+		opts = {
+			plugins = {
+				gitsigns = { enabled = true },
+				tmux = { enabled = vim.env.TMUX ~= nil },
+			},
+		},
     keys = bindings,
   },
 }

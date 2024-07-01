@@ -2,7 +2,7 @@
 
 local M = {}
 
-local plugin_icons = {
+plugin_icons = {
 	DiffviewFiles = { ' ' },
 	fugitive = { ' ' },
 	fugitiveblame = { '󰊢', 'Blame' },

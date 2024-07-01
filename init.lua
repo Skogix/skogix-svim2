@@ -1,12 +1,9 @@
+local standardConfigPath = vim.fn.stdpath('config')
+local lazyConfigOverridePath = standardConfigPath .. '/lua/config/lazy.lua'
 
+vim.eventLoop = vim.eventLoop or vim.loop
 
-
-local stdconfig = vim.fn.stdpath('config')
-local lazy_override = stdconfig .. '/lua/config/lazy.lua'
-
-vim.uv = vim.uv or vim.loop
-
-if vim.uv.fs_stat(lazy_override) then
+if vim.eventLoop.fs_stat(lazyConfigOverridePath) then
 	-- Override Skogix default config.
 	require('config.lazy')
 else

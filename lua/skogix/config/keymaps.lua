@@ -31,9 +31,6 @@ map('n', '<leader>tr', open_readme, { desc = '[toggle] readme' })
 map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = 'Down' })
 map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = 'Up' })
 
-
-
-
 -- Set highlight on [search], but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -519,5 +516,3 @@ wk.register(normal, {})
 -- 	end
 -- end, { 'Maximize window' })
 -- -- }}}
---
--- -- vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

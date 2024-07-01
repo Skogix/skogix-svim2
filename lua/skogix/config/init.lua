@@ -1,6 +1,9 @@
+-- Define a module M
 local M = {}
 
--- Load skogix config files.
+-- This function sets up the configuration for Skogix.
+-- It loads the 'autocmds' configuration file if a file is being opened.
+-- It also creates an autocmd group and a user autocmd that loads 'autocmds' and 'keymaps' configuration files when the 'VeryLazy' pattern is matched.
 function M.setup()
 	-- Autocmds can be loaded lazily when not opening a file
 	local lazy_autocmds = vim.fn.argc(-1) == 0
@@ -21,8 +24,8 @@ function M.setup()
 	})
 end
 
--- Load lua/skogix/config/* and lua/config/* files.
----@param name 'autocmds' | 'options' | 'keymaps'
+-- This function loads the specified configuration file from lua/skogix/config/* and lua/config/* directories.
+-- @param name The name of the configuration file to load. It can be 'autocmds', 'options', or 'keymaps'.
 function M.load(name)
 	local function _load(mod)
 		if require('lazy.core.cache').find(mod)[1] then
@@ -41,8 +44,8 @@ function M.load(name)
 	vim.api.nvim_exec_autocmds('User', { pattern = pattern, modeline = false })
 end
 
--- This is the main entry-point once lazy.nvim is set-up.
--- Called from `lua/skogix/plugins/init.lua`
+-- This function is the main entry-point once lazy.nvim is set-up.
+-- It is called from `lua/skogix/plugins/init.lua`
 M.did_init = false
 function M.init()
 	if M.did_init then

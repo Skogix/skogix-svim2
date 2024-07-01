@@ -1,3 +1,3 @@
 return {
-      { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" }
+      { "<leader>tz", "<cmd>ZenMode<cr>", desc = "[toggle] zen mode" }
 }

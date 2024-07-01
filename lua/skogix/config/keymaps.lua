@@ -25,7 +25,7 @@ map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true
 
 
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
+-- Set highlight on [search], but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -112,37 +112,40 @@ local normal = {
 	[']'] = {name = 'next'},
 	['['] = {name = 'prev'},
 	s = {
-		name = "search",
-[';'] = { "<cmd>Telescope commands<cr>", 'search commands' },
-['/'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", 'search buffer' },
-['<'] = { "<cmd>Telescope search_history<cr>", 'search history' },
-[':'] = { "<cmd>Telescope command_history<cr>", 'search command history' },
-['D'] = {'<cmd>Telescope diagnostics<CR>', 'search workspace diagnostics' },
-['H'] = {'<cmd>Telescope help_tags<CR>', 'search help pages' },
-['M'] = {'<cmd>Telescope man_pages<CR>', 'Man Pages' },
-['O'] = { "<cmd>Telescope oldfiles<cr>", 'search old files' },
-['W'] = {'<cmd>Telescope grep_string<CR>', 'Word' },
-['b'] = { "<cmd>Telescope buffers<cr>", 'search buffers' },
-['c'] = {'<cmd>Telescope colorscheme<CR>', 'Colorscheme' },
-['d'] = {'<cmd>Telescope diagnostics bufnr=0<CR>', 'search document diagnostics'},
-['g'] = { "<cmd>Telescope live_grep<cr>", 'search grep' },
-['h'] = { "<cmd>Telescope highlights<cr>", 'search highlights' },
-['j'] = { "<cmd>Telescope jumplist<cr>", 'search jumplist' },
-['k'] = {'<cmd>Telescope keymaps<CR>', 'search key maps' },
-['l'] = {'<cmd>Telescope loclist<cr>', 'Location List' },
-['m'] = { "<cmd>Telescope marks<cr>", 'search marks' },
-['o'] = { "<cmd>Telescope vim_options<cr>", 'search neovim options' },
-['p'] = { "<cmd>Telescope pickers<cr>", 'search pickers' },
-['q'] = {'<cmd>Telescope quickfix<cr>', 'Quickfix List' },
-['r'] = { "<cmd>Telescope registers<cr>", 'search registers' },
-['s'] = { "<cmd>Telescope git_files<cr>", 'search files' },
-['S'] = { "<cmd>Telescope find_files<cr>", 'search files' },
-['w'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", 'search workspace symbols' },
-['la'] = {'<cmd>Telescope lsp_code_actions<CR>', 'Code Actions' },
-['lb'] = {'<cmd>Telescope lsp_range_code_actions<CR>', 'Code Actions' },
-['ld'] = {'<cmd>Telescope lsp_definitions<CR>', 'Definitions' },
-['li'] = {'<cmd>Telescope lsp_implementations<CR>', 'Implementations' },
-['lr'] = {'<cmd>Telescope lsp_references<CR>', 'References' },
+		name = "[search]",
+[';'] = { "<cmd>Telescope commands<cr>", '[search] commands' },
+['/'] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", '[search] buffer' },
+['<'] = { "<cmd>Telescope [search]_history<cr>", '[search] history' },
+[':'] = { "<cmd>Telescope command_history<cr>", '[search] command history' },
+['D'] = {'<cmd>Telescope diagnostics<CR>', '[search] workspace diagnostics' },
+['H'] = {'<cmd>Telescope help_tags<CR>', '[search] help pages' },
+['M'] = {'<cmd>Telescope man_pages<CR>', '[search] man pages' },
+['O'] = { "<cmd>Telescope oldfiles<cr>", '[search] old files' },
+['W'] = {'<cmd>Telescope grep_string<CR>', '[search] current word' },
+['b'] = { "<cmd>Telescope buffers<cr>", '[search] buffers' },
+['c'] = {'<cmd>Telescope colorscheme<CR>', '[search] colorscheme' },
+['d'] = {'<cmd>Telescope diagnostics bufnr=0<CR>', '[search] document diagnostics'},
+['g'] = { "<cmd>Telescope live_grep<cr>", '[search] grep' },
+['h'] = { "<cmd>Telescope highlights<cr>", '[search] highlights' },
+['j'] = { "<cmd>Telescope jumplist<cr>", '[search] jumplist' },
+['k'] = {'<cmd>Telescope keymaps<CR>', '[search] key maps' },
+	l = {
+		name = "[search lsp]",
+['a'] = {'<cmd>Telescope lsp_code_actions<CR>', '[search lsp] code actions' },
+['b'] = {'<cmd>Telescope lsp_range_code_actions<CR>', '[search lsp] code actions' },
+['d'] = {'<cmd>Telescope lsp_definitions<CR>', '[search lsp] definitions' },
+['i'] = {'<cmd>Telescope lsp_implementations<CR>', '[search lsp] implementations' },
+['r'] = {'<cmd>Telescope lsp_references<CR>', '[search lsp] references' },
+		},
+['L'] = {'<cmd>Telescope loclist<cr>', '[search] location list' },
+['m'] = { "<cmd>Telescope marks<cr>", '[search] marks' },
+['o'] = { "<cmd>Telescope vim_options<cr>", '[search] neovim options' },
+['p'] = { "<cmd>Telescope pickers<cr>", '[search] pickers' },
+['q'] = {'<cmd>Telescope quickfix<cr>', '[search] quickfix list' },
+['r'] = { "<cmd>Telescope registers<cr>", '[search] registers' },
+['s'] = { "<cmd>Telescope git_files<cr>", '[search] files' },
+['S'] = { "<cmd>Telescope find_files<cr>", '[search] files' },
+['w'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", '[search] workspace symbols' },
 		-- ['x'] = {
 		-- 	function()
 		-- 		require('telescope.builtin').lsp_document_symbols({
@@ -189,14 +192,15 @@ local normal = {
 }
 
 local leader = {
+	a = { name = 'ai' },
 	b = { name = 'buffer' },
 	c = { name = 'code' },
 	f = { name = 'file/find' },
 	h = { name = 'harpoon' },
 	m = { name = 'tools' },
 	n = { name = 'notes' },
-	s = { name = 'search' },
-	t = { name = 'toggle/tools' },
+	-- s = { name = '[search]' },
+	t = { name = 'toggle' },
 	u = { name = 'ui' },
 	x = { name = 'diagnostics/quickfix' },
 	g = {
@@ -213,45 +217,8 @@ local leader = {
 local opts = {prefix = "<leader>"}
 wk.register(leader, opts)
 wk.register(normal, {})
---
--- -- Rafi's Neovim keymaps
--- -- github.com/rafi/vim-config
--- -- ===
--- -- This file is automatically loaded by rafi.config.init
---
--- local Util = require('rafi.util')
--- local map = vim.keymap.set
---
--- -- Package-manager
--- map('n', '<leader>l', '<cmd>Lazy<cr>', { 'Open Lazy UI' })
--- map('n', '<leader>mx', '<cmd>LazyExtras<CR>', { 'Open Plugin Extras' })
---
--- -- stylua: ignore start
---
--- -- Navigation {{{
---
--- -- Moves through display-lines, unless count is provided
--- map({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, 'Down' })
--- map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, 'Up' })
---
--- if vim.F.if_nil(vim.g.elite_mode, false) then
--- 	-- Elite-mode: Arrow-keys resize window
--- 	map('n', '<Up>', '<cmd>resize +1<cr>', { 'Increase Window Height' })
--- 	map('n', '<Down>', '<cmd>resize -1<cr>', { 'Decrease Window Height' })
--- 	map('n', '<Left>', '<cmd>vertical resize +1<cr>', { 'Increase Window Width' })
--- 	map('n', '<Right>', '<cmd>vertical resize -1<cr>', { 'Decrease Window Width' })
--- else
--- 	-- Moves through display-lines, unless count is provided
--- 	map({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, 'Down' })
--- 	map({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, 'Up' })
---
--- 	-- Resize window using <ctrl> arrow keys
--- 	map('n', '<C-Up>', '<cmd>resize +2<cr>', { 'Increase Window Height' })
--- 	map('n', '<C-Down>', '<cmd>resize -2<cr>', { 'Decrease Window Height' })
--- 	map('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { 'Decrease Window Width' })
--- 	map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { 'Increase Window Width' })
--- end
---
+
+
 -- if not vim.env.TMUX or vim.uv.os_uname().sysname == 'Windows_NT' then
 -- 	-- Move to window using the <ctrl> hjkl keys
 -- 	map('n', '<C-h>', '<C-w>h', { 'Go to Left Window', remap = true })
@@ -264,113 +231,15 @@ wk.register(normal, {})
 -- 	map('t', '<C-k>', '<cmd>wincmd k<cr>', { 'Go to Upper Window' })
 -- 	map('t', '<C-l>', '<cmd>wincmd l<cr>', { 'Go to Right Window' })
 -- end
---
--- -- Easier line-wise movement
--- map('n', 'gh', 'g^', { 'Jump to first screen character' })
--- map('n', 'gl', 'g$', { 'Jump to last screen character' })
---
--- -- Navigation in command line
--- map('c', '<C-h>', '<Home>')
--- map('c', '<C-l>', '<End>')
--- map('c', '<C-f>', '<Right>')
--- map('c', '<C-b>', '<Left>')
---
--- -- Scroll step sideways
--- map('n', 'zl', 'z4l')
--- map('n', 'zh', 'z4h')
---
--- -- Toggle fold or select option from popup menu
--- map('n', '<CR>', function()
--- 	return vim.fn.pumvisible() == 1 and '<CR>' or 'za'
--- end, { expr = true, 'Toggle Fold' })
---
--- -- Focus the current fold by closing all others
--- map('n', '<S-Return>', 'zMzv', { remap = true, 'Focus Fold' })
---
--- -- Tabs: Many ways to navigate them
--- map('n', '<A-j>', '<cmd>tabnext<CR>', { 'Next Tab' })
--- map('n', '<A-k>', '<cmd>tabprevious<CR>', { 'Previous Tab' })
--- map('n', '<A-[>', '<cmd>tabprevious<CR>', { 'Previous Tab' })
--- map('n', '<A-]>', '<cmd>tabnext<CR>', { 'Next Tab' })
--- map('n', '<C-Tab>', '<cmd>tabnext<CR>', { 'Next Tab' })
--- map('n', '<C-S-Tab>', '<cmd>tabprevious<CR>', { 'Previous Tab' })
---
--- -- Moving tabs
--- map('n', '<A-{>', '<cmd>-tabmove<CR>', { 'Tab Move Backwards' })
--- map('n', '<A-}>', '<cmd>+tabmove<CR>', { 'Tab Move Forwards' })
---
--- -- buffers
--- map('n', '<leader>bb', '<cmd>e #<CR>', { 'Switch to Other Buffer' })
--- map('n', '<leader>`', '<cmd>e #<CR>', { 'Switch to Other Buffer' })
--- map('n', '<leader>bD', '<cmd>:bd<cr>', { 'Delete Buffer and Window' })
---
--- -- }}}
--- -- Selection {{{
---
--- map('n', '<Leader><Leader>', 'V', { 'Visual Mode' })
--- map('x', '<Leader><Leader>', '<Esc>', { 'Exit Visual Mode' })
---
--- -- Select last paste
--- map('n', 'vsp', "'`['.strpart(getregtype(), 0, 1).'`]'", { expr = true, 'Select Paste' })
---
--- -- Quick substitute within selected area
--- map('x', 'sg', ':s//gc<Left><Left><Left>', { 'Substitute Within Selection' })
---
--- -- C-r: Easier search and replace visual/select mode
--- map(
--- 	'x',
--- 	'<C-r>',
--- 	":<C-u>%s/\\V<C-R>=v:lua.require'rafi.util.edit'.get_visual_selection()<CR>"
--- 		.. '//gc<Left><Left><Left>',
--- 	{ 'Replace Selection' }
--- )
---
--- -- Re-select blocks after indenting in visual/select mode
--- map('x', '<', '<gv', { 'Indent Right and Re-select' })
--- map('x', '>', '>gv|', { 'Indent Left and Re-select' })
---
--- -- Use tab for indenting in visual/select mode
--- map('x', '<Tab>', '>gv|', { 'Indent Left' })
--- map('x', '<S-Tab>', '<gv', { 'Indent Right' })
---
--- -- Better block-wise operations on selected area
--- local blockwise_force = function(key)
--- 	local c_v = vim.api.nvim_replace_termcodes('<C-v>', true, false, true)
--- 	local keyseq = {
--- 		I  = { v = '<C-v>I',  V = '<C-v>^o^I', [c_v] = 'I' },
--- 		A  = { v = '<C-v>A',  V = '<C-v>0o$A', [c_v] = 'A' },
--- 		gI = { v = '<C-v>0I', V = '<C-v>0o$I', [c_v] = '0I' },
--- 	}
--- 	return function()
--- 		return keyseq[key][vim.fn.mode()]
--- 	end
--- end
--- map('x', 'I',  blockwise_force('I'),  { expr = true, noremap = true, 'Blockwise Insert' })
--- map('x', 'gI', blockwise_force('gI'), { expr = true, noremap = true, 'Blockwise Insert' })
--- map('x', 'A',  blockwise_force('A'),  { expr = true, noremap = true, 'Blockwise Append' })
---
--- -- }}}
--- -- Jump to {{{
---
+
 -- map('n', '[b', '<cmd>bprev<CR>', { 'Previous Buffer' })
 -- map('n', ']b', '<cmd>bnext<CR>', { 'Next Buffer' })
 -- map('n', ']q', vim.cmd.cnext, { 'Next Quickfix' })
 -- map('n', '[q', vim.cmd.cprev, { 'Previous Quickfix' })
 -- map('n', ']a', '<cmd>lnext<CR>', { 'Next Loclist' })
 -- map('n', '[a', '<cmd>lprev<CR>', { 'Previous Loclist' })
---
--- -- Whitespace jump (see plugin/whitespace.vim)
--- map('n', ']z', function() Util.edit.whitespace_jump(1) end, { 'Next Whitespace' })
--- map('n', '[z', function() Util.edit.whitespace_jump(-1) end, { 'Previous Whitespace' })
---
--- -- Diagnostic movement
--- local diagnostic_goto = function(next, severity)
--- 	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
--- 	local severity_int = severity and vim.diagnostic.severity[severity] or nil
--- 	return function()
--- 		go({ severity = severity_int })
--- 	end
--- end
+
+
 -- map('n', '<Leader>ce', vim.diagnostic.open_float, { 'Line Diagnostics' })
 -- map('n', ']d', diagnostic_goto(true), { 'Next Diagnostic' })
 -- map('n', '[d', diagnostic_goto(false), { 'Prev Diagnostic' })
@@ -378,29 +247,25 @@ wk.register(normal, {})
 -- map('n', '[e', diagnostic_goto(false, 'ERROR'), { 'Prev Error' })
 -- map('n', ']w', diagnostic_goto(true, 'WARN'), { 'Next Warning' })
 -- map('n', '[w', diagnostic_goto(false, 'WARN'), { 'Prev Warning' })
---
--- -- }}}
--- -- Clipboard {{{
--- -- ===
---
+
 -- -- Paste in visual-mode without pushing to register
 -- map('x', 'p', 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true, 'Paste' })
 -- map('x', 'P', 'P:let @+=@0<CR>:let @"=@0<CR>', { silent = true, 'Paste In-place' })
---
+
 -- -- Yank buffer's relative path to clipboard
 -- map('n', '<Leader>y', function()
 -- 	local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':~:.') or ''
 -- 	vim.fn.setreg('+', path)
 -- 	vim.notify(path, vim.log.levels.INFO, { title = 'Yanked relative path' })
 -- end, { silent = true, 'Yank relative path' })
---
+
 -- -- Yank absolute path
 -- map('n', '<Leader>Y', function()
 -- 	local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p') or ''
 -- 	vim.fn.setreg('+', path)
 -- 	vim.notify(path, vim.log.levels.INFO, { title = 'Yanked absolute path' })
 -- end, { silent = true, 'Yank absolute path' })
---
+
 -- --- }}}
 -- -- Coding {{{
 --
@@ -431,7 +296,7 @@ wk.register(normal, {})
 -- map('x', '<Leader>dd', '""Y""Pgv', { 'Duplicate selection' })
 --
 -- -- }}}
--- -- Search, substitute, diff {{{
+-- -- [search], substitute, diff {{{
 --
 -- -- Switch */g* and #/g#
 -- map('n', '*', 'g*')
@@ -439,8 +304,8 @@ wk.register(normal, {})
 -- map('n', '#', 'g#')
 -- map('n', 'g#', '#')
 --
--- -- Clear search with <Esc>
--- map('n', '<Esc>', '<cmd>noh<CR>', { 'Escape and Clear hlsearch' })
+-- -- Clear [search] with <Esc>
+-- map('n', '<Esc>', '<cmd>noh<CR>', { 'Escape and Clear hl[search]' })
 --
 -- -- Use backspace key for matching pairs
 -- map({ 'n', 'x' }, '<BS>', '%', { remap = true, 'Jump to Paren' })
@@ -456,7 +321,7 @@ wk.register(normal, {})
 -- -- Put vim command output into buffer
 -- map('n', 'g!', ":put=execute('')<Left><Left>", { 'Paste Command' })
 --
--- -- Switch history search pairs, matching my bash shell
+-- -- Switch history [search] pairs, matching my bash shell
 -- map('c', '<Up>', '<C-p>')
 -- map('c', '<Down>', '<C-n>')
 -- map('c', '<C-p>', function()
@@ -513,7 +378,7 @@ wk.register(normal, {})
 -- map('n', '<Leader>uD', function() Util.edit.diagnostic_toggle(true) end, { 'Disable All Diagnostics' })
 --
 -- map('n', '<Leader>uo', '<cmd>setlocal nolist!<CR>', { 'Toggle Whitespace Symbols' })
--- map('n', '<Leader>uu', '<cmd>nohlsearch<CR>', { 'Hide Search Highlight' })
+-- map('n', '<Leader>uu', '<cmd>nohl[search]<CR>', { 'Hide Search Highlight' })
 -- local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 -- map('n', '<leader>uc', function() LazyVim.toggle('conceallevel', false, { 0, conceallevel }) end, { 'Toggle Conceal' })
 -- if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
@@ -526,12 +391,12 @@ wk.register(normal, {})
 -- map('n', '<Leader>ui', vim.show_pos, { 'Show Treesitter Node' })
 -- map('n', '<leader>uI', '<cmd>InspectTree<cr>', { 'Inspect Tree' })
 --
--- -- Clear search, diff update and redraw taken from runtime/lua/_editor.lua
+-- -- Clear [search], diff update and redraw taken from runtime/lua/_editor.lua
 -- map(
 -- 	'n',
 -- 	'<leader>ur',
--- 	'<cmd>nohlsearch<bar>diffupdate<bar>normal! <C-L><CR>',
--- 	{ 'Redraw / Clear hlsearch / Diff Update' }
+-- 	'<cmd>nohl[search]<bar>diffupdate<bar>normal! <C-L><CR>',
+-- 	{ 'Redraw / Clear hl[search] / Diff Update' }
 -- )
 --
 -- -- }}}

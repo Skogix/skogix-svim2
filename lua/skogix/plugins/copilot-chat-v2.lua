@@ -10,8 +10,6 @@ local prompts = {
   FixError = "Please explain the error in the following text and provide a solution.",
   BetterNamings = "Please provide better names for the following variables and functions.",
   Documentation = "Please provide documentation for the following code.",
-  SwaggerApiDocs = "Please provide documentation for the following API using Swagger.",
-  SwaggerJsDocs = "Please write JSDoc for the following API using Swagger.",
   -- Text related prompts
   Summarize = "Please summarize the following text.",
   Spelling = "Please correct any grammar and spelling errors in the following text.",
@@ -20,15 +18,16 @@ local prompts = {
 }
 
 return {
-  { import = "plugins.extras.coding.copilot" }, -- Or use { import = "lazyvim.plugins.extras.coding.copilot" },
-  { import = "plugins.extras.editor.fzf" }, -- Use fzf for fuzzy finding
+  --{ import = "plugins.extras.coding.copilot" }, -- Or use { import = "lazyvim.plugins.extras.coding.copilot" },
+	{ import = "lazyvim.plugins.extras.coding.copilot" },
   {
     dir = IS_DEV and "~/Projects/research/CopilotChat.nvim" or nil,
     "CopilotC-Nvim/CopilotChat.nvim",
-    -- version = "v2.10.0",
-    branch = "canary", -- Use the canary branch if you want to test the latest features but it might be unstable
+    version = "v2.10.1",
+    -- branch = "canary", -- Use the canary branch if you want to test the latest features but it might be unstable
     -- Do not use branch and version together, either use branch or version
     dependencies = {
+      { "nvim-telescope/telescope.nvim" }, -- Use telescope for help actions
       { "nvim-lua/plenary.nvim" },
     },
     opts = {
@@ -37,7 +36,7 @@ return {
       error_header = "## Error ",
       prompts = prompts,
       auto_follow_cursor = false, -- Don't follow the cursor after getting response
-      show_help = false, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
+      show_help = true, -- Show help in virtual text, set to true if that's 1st time using Copilot Chat
       mappings = {
         -- Use tab for completion
         complete = {
@@ -88,24 +87,20 @@ return {
       -- Use unnamed register for the selection
       opts.selection = select.unnamed
 
-      local user = vim.env.USER or "User"
-      user = user:sub(1, 1):upper() .. user:sub(2)
-      opts.question_header = "  " .. user .. " "
-      opts.answer_header = "  Copilot "
       -- Override the git prompts message
       opts.prompts.Commit = {
-        prompt = 'Write commit message with commitizen convention. Write clear, informative commit messages that explain the "what" and "why" behind changes, not just the "how".',
+        prompt = "Write commit message for the change with commitizen convention",
         selection = select.gitdiff,
       }
       opts.prompts.CommitStaged = {
-        prompt = 'Write commit message for the change with commitizen convention. Write clear, informative commit messages that explain the "what" and "why" behind changes, not just the "how".',
+        prompt = "Write commit message for the change with commitizen convention",
         selection = function(source)
           return select.gitdiff(source, true)
         end,
       }
 
       chat.setup(opts)
-      -- Setup CMP integration
+      -- Setup the CMP integration
       require("CopilotChat.integrations.cmp").setup()
 
       vim.api.nvim_create_user_command("CopilotChatVisual", function(args)
@@ -162,27 +157,27 @@ return {
     end,
     event = "VeryLazy",
     keys = {
-      -- Show help actions
+      -- Show help actions with telescope
       {
         "<leader>ah",
         function()
           local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.fzflua").pick(actions.help_actions())
+          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
         end,
         desc = "CopilotChat - Help actions",
       },
-      -- Show prompts actions
+      -- Show prompts actions with telescope
       {
         "<leader>ap",
         function()
           local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
         desc = "CopilotChat - Prompt actions",
       },
       {
         "<leader>ap",
-        ":lua require('CopilotChat.integrations.fzflua').pick(require('CopilotChat.actions').prompt_actions({selection = require('CopilotChat.select').visual}))<CR>",
+        ":lua require('CopilotChat.integrations.telescope').pick(require('CopilotChat.actions').prompt_actions({selection = require('CopilotChat.select').visual}))<CR>",
         mode = "x",
         desc = "CopilotChat - Prompt actions",
       },
@@ -247,17 +242,5 @@ return {
       -- Toggle Copilot Chat Vsplit
       { "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
     },
-  },
-  {
-    "folke/edgy.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.right = opts.right or {}
-      table.insert(opts.right, {
-        ft = "copilot-chat",
-        title = "Copilot Chat",
-        size = { width = 50 },
-      })
-    end,
   },
 }

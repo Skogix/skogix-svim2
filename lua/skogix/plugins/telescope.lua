@@ -59,7 +59,7 @@ function myactions.live_grep_from_project_git_root()
 	require("telescope.builtin").live_grep(opts)
 end
 
-local plugin_directories = function(opts)
+PLUGIN_DIRECTORIES = function(opts)
 	local actions = require('telescope.actions')
 	local utils = require('telescope.utils')
 	local dir = vim.fn.stdpath('data') .. '/lazy'

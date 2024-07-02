@@ -17,3 +17,29 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.highlight.on_yank({ timeout = 50 })
 	end,
 })
+
+-- augroup vimrc
+--   au BufReadPre * setlocal foldmethod=indent
+--   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+-- augroup END
+
+-- Create an autocmd group for foldmethod
+local foldmethodGroup = createUniqueAutocmdGroup('foldmethod')
+
+-- Set foldmethod to 'indent' when a buffer is read
+vim.api.nvim_create_autocmd('BufReadPre', {
+	group = foldmethodGroup,
+	callback = function()
+		vim.opt_local.foldmethod = 'indent'
+	end,
+})
+
+-- Change foldmethod to 'manual' when the buffer window is entered
+vim.api.nvim_create_autocmd('BufWinEnter', {
+	group = foldmethodGroup,
+	callback = function()
+		if vim.opt_local.foldmethod:get() == 'indent' then
+			vim.opt_local.foldmethod = 'marker'
+		end
+	end,
+})

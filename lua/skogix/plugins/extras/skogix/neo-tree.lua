@@ -198,6 +198,7 @@ return {
 
 				["s"] = "noop",
 				["sv"] = "open_split",
+				["<C-CR>"] = "open_vsplit",
 				["sg"] = "open_vsplit",
 				["st"] = "open_tabnew",
 

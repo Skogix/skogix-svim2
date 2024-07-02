@@ -174,16 +174,18 @@ opt.fillchars = {
 opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
 
 -- TODO fix
-vim.opt.foldmethod = 'indent'
--- if vim.fn.has('nvim-0.10') == 1 then
--- 	opt.smoothscroll = true
--- 	vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
--- 	vim.opt.foldmethod = 'expr'
--- 	vim.opt.foldtext = ''
--- else
--- 	vim.opt.foldmethod = 'indent'
--- 	vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
--- end
+-- vim.opt.foldmethod = 'indent'
+
+
+if vim.fn.has('nvim-0.10') == 1 then
+	opt.smoothscroll = true
+	vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+	vim.opt.foldmethod = 'expr'
+	vim.opt.foldtext = ''
+else
+	vim.opt.foldmethod = 'indent'
+	vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+end
 
 -- Misc
 -- ===

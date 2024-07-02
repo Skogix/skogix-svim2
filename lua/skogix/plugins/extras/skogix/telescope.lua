@@ -5,18 +5,6 @@ local function open_selected_file_in_vertical()
 	vim.cmd("vsplit " .. entry.path)
 end
 
--- -- Telescope integration
--- local addToWhichKey, _ = pcall(require, "which-key")
--- local function add_to_which_key()
--- 	if addToWhichKey then
--- 		print("added to whichkey")
--- 		local wk = require('which-key')
--- 		wk.register({s = {name="[search]"}},{})
--- 	else
--- 		print("!!!!!!!!!!!!!!!!11")
--- 	end
--- end
-
 return {
     "nvim-telescope/telescope.nvim",
 		-- lazy = false,

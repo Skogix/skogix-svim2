@@ -1,13 +1,9 @@
--- Neovim keymaps
--- This file is automatically loaded by skogix.config.init
-
 -- local Util = require('skogix.util')
 local map = vim.keymap.set
-local wk = require('which-key')
 
 
 -- skogix/keymaps/neorg.lua
-require('skogix.keymaps.neorg').globals(wk)
+-- require('skogix.keymaps.neorg').globals(wk)
 
 -- {{{ functions
 local lazyterm = function() LazyVim.terminal(nil, { cwd = LazyVim.root() }) end
@@ -28,8 +24,8 @@ end
 --- }}}
 -- {{{ basics
 -- Copy paste
-map({ 'n', 'x' }, '<leader>y', [["+y]]) -- copy to system clipboard
-map({ 'n', 'x' }, '<leader>p', [["+p]]) -- paste from system clipboard
+map({ 'n', 'x' }, '<leader>y', '[copy] to system clipboard') -- copy to system clipboard
+map({ 'n', 'x' }, '<leader>p', '[paste] to system clipboard') -- paste from system clipboard
 -- Keybinds to make split navigation easier.
 -- Use CTRL+<hjkl> to switch between windows
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
@@ -76,7 +72,16 @@ map("v", "<", "<gv", { desc = "" })
 map("v", ">", ">gv", { desc = "" })
 map('n', ';', ':', { desc = 'command' }) -- ; => :
 -- }}}
+
 -- -- skogix/keymaps/neorg.lua
 -- require('skogix.keymaps.neorg').globals(wk)
+
+-- which-key integration
+if pcall(require, "which-key") then
+	local wk = require('which-key')
+	wk.register({s = {name="[search]"}},{})
+end
+
+-- add_to_which_key()
 
 -- vim:foldmethod=marker

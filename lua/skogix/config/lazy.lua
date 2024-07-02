@@ -31,6 +31,7 @@ require("lazy").setup(vim.tbl_extend("keep", user_lazy_opts, {
 	spec = {
 		{ import = "skogix.plugins.lazyvim" },
 		{ import = "skogix.plugins" },
+		-- { import = "skogix.keymaps" },
 		-- { import = "skogix.plugins.todo" },
 		-- { import = "skogix.plugins.init" },
 		-- { import = "skogix.plugins.lsp" },

@@ -1,4 +1,2 @@
-# sVim
+# sVim 0.4
 
-# TODO:
-- [ ] 

@@ -28,7 +28,7 @@ return {
 		},
 		lazy = false,
 		-- event = 'VeryLazy',
-		-- ft = 'norg',
+		ft = 'norg',
 		opts = {
 			load = {
 				['core.defaults'] = {},        -- Loads default behaviour

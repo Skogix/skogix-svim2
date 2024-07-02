@@ -6,9 +6,12 @@ local map = vim.keymap.set
 local wk = require('which-key')
 
 
-map('n', 'H', '<cmd>tabprevious<CR>', { desc = 'Prev tab' })
-map('n', 'L', '<cmd>tabnext<CR>', { desc = 'Next tab' })
-map('n', '<C-w>', '<cmd>wq<CR>', { desc = 'close tab' })
+-- skogix/keymaps/neorg.lua
+require('skogix.keymaps.neorg').globals(wk)
+
+-- map('n', 'H', '<cmd>tabprevious<CR>', { desc = 'Prev tab' })
+-- map('n', 'L', '<cmd>tabnext<CR>', { desc = 'Next tab' })
+-- map('n', '<C-w>', '<cmd>wq<CR>', { desc = 'close tab' })
 
 
 

@@ -1,6 +1,7 @@
 
 local M = {}
 
+
 function M.globals(wk)
     wk.register({
         ['<leader>'] = {
@@ -10,6 +11,16 @@ function M.globals(wk)
                 s = { '<cmd>Neorg workspace work<CR>', '[neorg] skogix' },
                 n = { '<cmd>Neorg keybinds core.dirman.new.note<CR>', '[neorg] new note' },
             },
+			a = {
+					"y",
+					function()
+						local input = vim.fn.input("Quick Chat: ")
+						if input ~= "" then
+							require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+						end
+					end,
+					desc = "CopilotChat - Quick chat",
+			},
         },
     }, {})
 end

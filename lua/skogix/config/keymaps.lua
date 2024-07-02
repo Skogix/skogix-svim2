@@ -201,7 +201,17 @@ local normal = {
 }
 
 local leader = {
-	a = { name = 'ai' },
+	a = { name = 'ai'
+		-- y = {
+		-- 	function()
+		-- 		local input = vim.fn.input("Quick Chat: ")
+		-- 		if input ~= "" then
+		-- 			require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+		-- 		end
+		-- 	end,
+		-- 	"CopilotChat - Quick chat",
+		-- },
+	},
 	b = { name = 'buffer' },
 	c = { name = 'code' },
 	f = { name = 'file/find' },

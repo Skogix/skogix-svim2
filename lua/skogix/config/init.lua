@@ -87,6 +87,7 @@ function M.init()
 			module = 'plugins.extras',
 		},
 	}
+
 end
 
 return M

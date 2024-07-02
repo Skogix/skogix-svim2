@@ -5,6 +5,7 @@ return {
     branch = "harpoon2",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
+			{'nvim-telescope/telescope.nvim'},
     },
     keys = bindings,
     opts = {
@@ -33,10 +34,10 @@ return {
       -- end
 
       -- Telescope integration
-      local tele_status_ok, _ = pcall(require, "telescope")
-      if not tele_status_ok then
-        return
-      end
+      -- local tele_status_ok, _ = pcall(require, "telescope")
+      -- if not tele_status_ok then
+      --   return
+      -- end
 
       local conf = require("telescope.config").values
       local function toggle_telescope(harpoon_files)
@@ -62,7 +63,7 @@ return {
           :find()
       end
 
-      vim.keymap.set("n", "<leader>fm", function()
+      vim.keymap.set("n", "<leader>hT", function()
         toggle_telescope(harpoon:list())
       end, { desc = "Open harpoon window" })
     end,

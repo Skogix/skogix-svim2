@@ -45,6 +45,7 @@ return {
 					},
 				},
 				sources = cmp.config.sources({
+					{ name = 'neorg', priority = 40 },
 					{ name = 'nvim_lsp', priority = 50 },
 					{ name = 'path', priority = 40 },
 				}, {

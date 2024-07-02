@@ -1,9 +1,4 @@
--- Plugin: telescope.nvim
-
--- Helpers
-
--- Custom actions
-
+local Path = require("skogix.util.path")
 local myactions = {}
 
 function myactions.send_to_qflist(prompt_bufnr)
@@ -41,9 +36,30 @@ function myactions.scroll_results(prompt_bufnr, direction)
 	)
 end
 
--- Custom pickers
+--- Open selected file in vertical split
+function myactions.open_selected_file_in_vertical()
+	local entry = require("telescope.actions.state").get_selected_entry()
+	require("telescope.actions").close(entry)
+	vim.cmd("vsplit " .. entry.path)
+end
 
-local plugin_directories = function(opts)
+function myactions.find_files_from_project_git_root()
+	local opts = {}
+	if Path.is_git_repo() then
+		opts = {cwd = Path.get_git_root()}
+	end
+	require("telescope.builtin").find_files(opts)
+end
+
+function myactions.live_grep_from_project_git_root()
+	local opts = {}
+	if Path.is_git_repo() then
+		opts = {cwd = Path.get_git_root()}
+	end
+	require("telescope.builtin").live_grep(opts)
+end
+
+PLUGIN_DIRECTORIES = function(opts)
 	local actions = require('telescope.actions')
 	local utils = require('telescope.utils')
 	local dir = vim.fn.stdpath('data') .. '/lazy'
@@ -63,7 +79,16 @@ local plugin_directories = function(opts)
 			display = line:sub(dir_len + 2),
 		}
 	end
+	local actions = require('telescope.actions')
+	local utils = require('telescope.utils')
+	local dir = vim.fn.stdpath('data') .. '/lazy'
 
+	opts = opts or {}
+	opts.cmd = vim.F.if_nil(opts.cmd, {
+		vim.o.shell,
+		'-c',
+		'find ' .. vim.fn.shellescape(dir) .. ' -mindepth 1 -maxdepth 1 -type d',
+	})
 	require('telescope.pickers')
 		.new(opts, {
 			layout_config = {
@@ -88,6 +113,7 @@ local plugin_directories = function(opts)
 		})
 		:find()
 end
+
 
 -- Custom window-sizes
 ---@param dimensions table
@@ -131,396 +157,269 @@ vim.api.nvim_create_autocmd('User', {
 		vim.opt_local.number = true
 	end,
 })
-
--- Setup Telescope
--- See telescope.nvim/lua/telescope/config.lua for defaults.
 return {
+	"nvim-telescope/telescope.nvim",
+	-- cmd = 'Telescope',
+	event = 'VimEnter',
+	opts = function ()
+		local transform_mod = require('telescope.actions.mt').transform_mod
+		local actions = require('telescope.actions')
 
-	-----------------------------------------------------------------------------
-	-- Find, Filter, Preview, Pick. All lua.
-	{
-		'nvim-telescope/telescope.nvim',
-		cmd = 'Telescope',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			-- Telescope extension for Zoxide
-			'jvgrootveld/telescope-zoxide',
-			-- Browse synonyms for a word
-			'rafi/telescope-thesaurus.nvim',
-		},
-		config = function(_, opts)
-			require('telescope').setup(opts)
-		end,
-		-- stylua: ignore
-		keys = {
-			-- -- General pickers
-			-- { '<localleader>r', '<cmd>Telescope resume<CR>', desc = 'Resume Last' },
-			-- { '<localleader>p', '<cmd>Telescope pickers<CR>', desc = 'Pickers' },
-			-- { '<localleader>f', '<cmd>Telescope find_files<CR>', desc = 'Find Files' },
-			-- { '<localleader>g', '<cmd>Telescope live_grep<CR>', desc = 'Grep' },
-			-- { '<localleader>b', '<cmd>Telescope buffers<CR>', desc = 'Buffers' },
-			-- { '<localleader>h', '<cmd>Telescope highlights<CR>', desc = 'Highlights' },
-			-- { '<localleader>j', '<cmd>Telescope jumplist<CR>', desc = 'Jump List' },
-			-- { '<localleader>m', '<cmd>Telescope marks<CR>', desc = 'Marks' },
-			-- { '<localleader>o', '<cmd>Telescope vim_options<CR>', desc = 'Neovim Options' },
-			-- { '<localleader>t', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', desc = 'Workspace Symbols' },
-			-- { '<localleader>v', '<cmd>Telescope registers<CR>', desc = 'Registers' },
-			-- { '<localleader>u', '<cmd>Telescope spell_suggest<CR>', desc = 'Spell Suggest' },
-			-- { '<localleader>x', '<cmd>Telescope oldfiles<CR>', desc = 'Old Files' },
-			-- { '<localleader>;', '<cmd>Telescope command_history<CR>', desc = 'Command History' },
-			-- { '<localleader>:', '<cmd>Telescope commands<CR>', desc = 'Commands' },
-			-- { '<localleader>/', '<cmd>Telescope search_history<CR>', desc = 'Search History' },
-			-- { '<leader>/', '<cmd>Telescope current_buffer_fuzzy_find<CR>', desc = 'Buffer Find' },
-			--
-			-- { '<leader>ff', '<cmd>Telescope find_files<CR>', desc = 'Find Files' },
-			-- { '<leader>fg', '<cmd>Telescope live_grep<CR>', desc = 'Grep' },
-			--
-			-- { '<leader>sd', '<cmd>Telescope diagnostics bufnr=0<CR>', desc = 'Document Diagnostics' },
-			-- { '<leader>sD', '<cmd>Telescope diagnostics<CR>', desc = 'Workspace Diagnostics' },
-			-- { '<leader>sh', '<cmd>Telescope help_tags<CR>', desc = 'Help Pages' },
-			-- { '<leader>sk', '<cmd>Telescope keymaps<CR>', desc = 'Key Maps' },
-			-- { '<leader>sj', '<cmd>Telescope jumplist<cr>', desc = 'Jumplist' },
-			-- { '<leader>sl', '<cmd>Telescope loclist<cr>', desc = 'Location List' },
-			-- { '<leader>sm', '<cmd>Telescope man_pages<CR>', desc = 'Man Pages' },
-			-- { '<leader>sq', '<cmd>Telescope quickfix<cr>', desc = 'Quickfix List' },
-			-- { '<leader>sw', '<cmd>Telescope grep_string<CR>', desc = 'Word' },
-			-- { '<leader>sc', '<cmd>Telescope colorscheme<CR>', desc = 'Colorscheme' },
-			--
-			-- -- LSP related
-			-- { '<localleader>dd', '<cmd>Telescope lsp_definitions<CR>', desc = 'Definitions' },
-			-- { '<localleader>di', '<cmd>Telescope lsp_implementations<CR>', desc = 'Implementations' },
-			-- { '<localleader>dr', '<cmd>Telescope lsp_references<CR>', desc = 'References' },
-			-- { '<localleader>da', '<cmd>Telescope lsp_code_actions<CR>', desc = 'Code Actions' },
-			-- { '<localleader>da', ':Telescope lsp_range_code_actions<CR>', mode = 'x', desc = 'Code Actions' },
-			-- {
-			-- 	'<leader>ss',
-			-- 	function()
-			-- 		require('telescope.builtin').lsp_document_symbols({
-			-- 			symbols = {
-			-- 				'Class',
-			-- 				'Function',
-			-- 				'Method',
-			-- 				'Constructor',
-			-- 				'Interface',
-			-- 				'Module',
-			-- 				'Struct',
-			-- 				'Trait',
-			-- 				'Field',
-			-- 				'Property',
-			-- 				'Enum',
-			-- 				'Constant',
-			-- 			},
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Goto Symbol',
-			-- },
-			-- {
-			-- 	'<leader>sS',
-			-- 	function()
-			-- 		require('telescope.builtin').lsp_dynamic_workspace_symbols({
-			-- 			symbols = {
-			-- 				'Class',
-			-- 				'Function',
-			-- 				'Method',
-			-- 				'Constructor',
-			-- 				'Interface',
-			-- 				'Module',
-			-- 				'Struct',
-			-- 				'Trait',
-			-- 				'Field',
-			-- 				'Property',
-			-- 				'Enum',
-			-- 				'Constant',
-			-- 			},
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Goto Symbol (Workspace)',
-			-- },
-			--
-			-- -- Git
-			-- { '<leader>gs', '<cmd>Telescope git_status<CR>', desc = 'Git Status' },
-			-- { '<leader>gr', '<cmd>Telescope git_branches<CR>', desc = 'Git Branches' },
-			-- { '<leader>gl', '<cmd>Telescope git_commits<CR>', desc = 'Git Commits' },
-			-- { '<leader>gL', '<cmd>Telescope git_bcommits<CR>', desc = 'Git Buffer Commits' },
-			-- { '<leader>gh', '<cmd>Telescope git_stash<CR>', desc = 'Git Stashes' },
-			-- { '<leader>gc', '<cmd>Telescope git_bcommits_range<CR>', mode = { 'x', 'n' }, desc = 'Git Buffer Commits Range' },
-			--
-			-- -- Plugins
-			-- { '<localleader>n', plugin_directories, desc = 'Plugins' },
-			-- { '<localleader>k', '<cmd>Telescope thesaurus lookup<CR>', desc = 'Thesaurus' },
-			--
-			-- {
-			-- 	'<localleader>z',
-			-- 	function()
-			-- 		require('telescope').extensions.zoxide.list({
-			-- 			layout_config = { width = 0.5, height = 0.6 },
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Zoxide (MRU)',
-			-- },
-			--
-			-- -- Find by...
-			-- {
-			-- 	'<leader>gt',
-			-- 	function()
-			-- 		require('telescope.builtin').lsp_workspace_symbols({
-			-- 			default_text = vim.fn.expand('<cword>'),
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Find Symbol',
-			-- },
-			-- {
-			-- 	'<leader>gf',
-			-- 	function()
-			-- 		require('telescope.builtin').find_files({
-			-- 			default_text = vim.fn.expand('<cword>'),
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Find File',
-			-- },
-			-- {
-			-- 	'<leader>gg', function()
-			-- 		require('telescope.builtin').live_grep({
-			-- 			default_text = vim.fn.expand('<cword>'),
-			-- 		})
-			-- 	end,
-			-- 	desc = 'Grep Cursor Word',
-			-- },
-			-- {
-			-- 	'<leader>gg',
-			-- 	function()
-			-- 		require('telescope.builtin').live_grep({
-			-- 			default_text = require('skogix.util.edit').get_visual_selection(),
-			-- 		})
-			-- 	end,
-			-- 	mode = 'x',
-			-- 	desc = 'Grep Cursor Word',
-			-- },
-			--
-		},
-		opts = function()
-			local transform_mod = require('telescope.actions.mt').transform_mod
-			local actions = require('telescope.actions')
+		-- Transform to Telescope proper actions.
+		myactions = transform_mod(myactions)
 
-			-- Transform to Telescope proper actions.
-			myactions = transform_mod(myactions)
+		-- Clone the default Telescope configuration and enable hidden files.
+		local has_ripgrep = vim.fn.executable('rg') == 1
+		local vimgrep_args = {
+			unpack(require('telescope.config').values.vimgrep_arguments),
+		}
+		table.insert(vimgrep_args, '--hidden')
+		table.insert(vimgrep_args, '--follow')
+		table.insert(vimgrep_args, '--no-ignore-vcs')
+		table.insert(vimgrep_args, '--glob')
+		table.insert(vimgrep_args, '!**/.git/*')
 
-			-- Clone the default Telescope configuration and enable hidden files.
-			local has_ripgrep = vim.fn.executable('rg') == 1
-			local vimgrep_args = {
-				unpack(require('telescope.config').values.vimgrep_arguments),
-			}
-			table.insert(vimgrep_args, '--hidden')
-			table.insert(vimgrep_args, '--follow')
-			table.insert(vimgrep_args, '--no-ignore-vcs')
-			table.insert(vimgrep_args, '--glob')
-			table.insert(vimgrep_args, '!**/.git/*')
+		local path_sep = jit and (jit.os == 'Windows' and '\\' or '/')
+		or package.config:sub(1, 1)
 
-			local path_sep = jit and (jit.os == 'Windows' and '\\' or '/')
-				or package.config:sub(1, 1)
+		local find_args = {
+			'rg',
+			'--vimgrep',
+			'--files',
+			'--follow',
+			'--hidden',
+			'--no-ignore-vcs',
+			'--smart-case',
+			'--glob',
+			'!**/.git/*',
+		}
+		return {
+			defaults = {
+				sorting_strategy = 'ascending',
+				cache_picker = { num_pickers = 3 },
 
-			local find_args = {
-				'rg',
-				'--vimgrep',
-				'--files',
-				'--follow',
-				'--hidden',
-				'--no-ignore-vcs',
-				'--smart-case',
-				'--glob',
-				'!**/.git/*',
-			}
+				prompt_prefix = '  ', -- ❯  
+				selection_caret = '▍ ',
+				multi_icon = ' ',
 
-			return {
-				defaults = {
-					sorting_strategy = 'ascending',
-					cache_picker = { num_pickers = 3 },
+				path_display = { 'truncate' },
+				file_ignore_patterns = { 'node_modules' },
+				set_env = { COLORTERM = 'truecolor' },
+				vimgrep_arguments = has_ripgrep and vimgrep_args or nil,
 
-					prompt_prefix = '  ', -- ❯  
-					selection_caret = '▍ ',
-					multi_icon = ' ',
+				layout_strategy = 'horizontal',
+			},
+			history = {
+				path = vim.fn.stdpath('state') .. path_sep .. 'telescope_history',
+			},
+			initial_mode = "insert",
+			selection_strategy = "reset",
+			layout_config = {
+				horizontal = {
+					prompt_position = "top",
+					preview_width = 0.55,
+					results_width = 0.8,
+				},
+				vertical = {
+					mirror = false,
+				},
+				width = 0.87,
+				height = 0.80,
+				preview_cutoff = 120,
+			},
+			path_display = { "truncate" },
+			-- stylua: ignore
+			mappings = {
 
-					path_display = { 'truncate' },
-					file_ignore_patterns = { 'node_modules' },
-					set_env = { COLORTERM = 'truecolor' },
-					vimgrep_arguments = has_ripgrep and vimgrep_args or nil,
+				i = {
+					['jj'] = { '<Esc>', type = 'command' },
 
-					layout_strategy = 'horizontal',
-					layout_config = {
-						prompt_position = 'top',
-						horizontal = {
-							height = 0.85,
-						},
-					},
-					history = {
-						path = vim.fn.stdpath('state') .. path_sep .. 'telescope_history',
+					['<Tab>'] = actions.move_selection_worse,
+					['<S-Tab>'] = actions.move_selection_better,
+					['<C-u>'] = actions.results_scrolling_up,
+					['<C-d>'] = actions.results_scrolling_down,
+
+					['<C-q>'] = myactions.smart_send_to_qflist,
+
+					['<C-n>'] = actions.cycle_history_next,
+					['<C-p>'] = actions.cycle_history_prev,
+
+					['<C-b>'] = actions.preview_scrolling_up,
+					['<C-f>'] = actions.preview_scrolling_down,
+					['<C-h>'] = actions.preview_scrolling_left,
+					['<C-j>'] = actions.preview_scrolling_down,
+					['<C-k>'] = actions.preview_scrolling_up,
+					['<C-l>'] = actions.preview_scrolling_right,
+				},
+
+				n = {
+					['q']     = actions.close,
+					['<Esc>'] = actions.close,
+
+					['<Tab>'] = actions.move_selection_worse,
+					['<S-Tab>'] = actions.move_selection_better,
+					['<C-u>'] = myactions.results_scrolling_up,
+					['<C-d>'] = myactions.results_scrolling_down,
+
+					['<C-b>'] = actions.preview_scrolling_up,
+					['<C-f>'] = actions.preview_scrolling_down,
+					['<C-h>'] = actions.preview_scrolling_left,
+					['<C-j>'] = actions.preview_scrolling_down,
+					['<C-k>'] = actions.preview_scrolling_up,
+					['<C-l>'] = actions.preview_scrolling_right,
+
+					['<C-n>'] = actions.cycle_history_next,
+					['<C-p>'] = actions.cycle_history_prev,
+
+					['*'] = actions.toggle_all,
+					['u'] = actions.drop_all,
+					['J'] = actions.toggle_selection + actions.move_selection_next,
+					['K'] = actions.toggle_selection + actions.move_selection_previous,
+					[' '] = {
+						actions.toggle_selection + actions.move_selection_next,
+						type = 'action',
+						opts = { nowait = true },
 					},
 
-					-- stylua: ignore
+					['sv'] = actions.select_horizontal,
+					['sg'] = actions.select_vertical,
+					['st'] = actions.select_tab,
+
+					['w'] = myactions.smart_send_to_qflist,
+					['e'] = myactions.send_to_qflist,
+
+					['!'] = actions.edit_command_line,
+
+					['t'] = function(...)
+						return require('trouble.providers.telescope').open_with_trouble(...)
+					end,
+
+					['p'] = function()
+						local entry = require('telescope.actions.state').get_selected_entry()
+						require('skogix.util.preview').open(entry.path)
+					end,
+				},
+
+			},
+			pickers = {
+				buffers = {
+					sort_lastused = true,
+					sort_mru = true,
+					layout_config = { width = width_large, height = 0.7 },
 					mappings = {
-
-						i = {
-							['jj'] = { '<Esc>', type = 'command' },
-
-							['<Tab>'] = actions.move_selection_worse,
-							['<S-Tab>'] = actions.move_selection_better,
-							['<C-u>'] = actions.results_scrolling_up,
-							['<C-d>'] = actions.results_scrolling_down,
-
-							['<C-q>'] = myactions.smart_send_to_qflist,
-
-							['<C-n>'] = actions.cycle_history_next,
-							['<C-p>'] = actions.cycle_history_prev,
-
-							['<C-b>'] = actions.preview_scrolling_up,
-							['<C-f>'] = actions.preview_scrolling_down,
-							['<C-h>'] = actions.preview_scrolling_left,
-							['<C-j>'] = actions.preview_scrolling_down,
-							['<C-k>'] = actions.preview_scrolling_up,
-							['<C-l>'] = actions.preview_scrolling_right,
-						},
-
 						n = {
-							['q']     = actions.close,
-							['<Esc>'] = actions.close,
-
-							['<Tab>'] = actions.move_selection_worse,
-							['<S-Tab>'] = actions.move_selection_better,
-							['<C-u>'] = myactions.results_scrolling_up,
-							['<C-d>'] = myactions.results_scrolling_down,
-
-							['<C-b>'] = actions.preview_scrolling_up,
-							['<C-f>'] = actions.preview_scrolling_down,
-							['<C-h>'] = actions.preview_scrolling_left,
-							['<C-j>'] = actions.preview_scrolling_down,
-							['<C-k>'] = actions.preview_scrolling_up,
-							['<C-l>'] = actions.preview_scrolling_right,
-
-							['<C-n>'] = actions.cycle_history_next,
-							['<C-p>'] = actions.cycle_history_prev,
-
-							['*'] = actions.toggle_all,
-							['u'] = actions.drop_all,
-							['J'] = actions.toggle_selection + actions.move_selection_next,
-							['K'] = actions.toggle_selection + actions.move_selection_previous,
-							[' '] = {
-								actions.toggle_selection + actions.move_selection_next,
-								type = 'action',
-								opts = { nowait = true },
-							},
-
-							['sv'] = actions.select_horizontal,
-							['sg'] = actions.select_vertical,
-							['st'] = actions.select_tab,
-
-							['w'] = myactions.smart_send_to_qflist,
-							['e'] = myactions.send_to_qflist,
-
-							['!'] = actions.edit_command_line,
-
-							['t'] = function(...)
-								return require('trouble.providers.telescope').open_with_trouble(...)
+							['dd'] = actions.delete_buffer,
+						},
+					},
+				},
+				find_files = {
+					find_command = has_ripgrep and find_args or nil,
+					layout_config = { preview_width = 0.5 },
+				},
+				live_grep = {
+					dynamic_preview_title = true,
+				},
+				colorscheme = {
+					enable_preview = true,
+					layout_config = { preview_width = 0.7 },
+				},
+				highlights = {
+					layout_config = { preview_width = 0.7 },
+				},
+				vim_options = {
+					theme = 'dropdown',
+					layout_config = { width = width_medium, height = 0.7 },
+				},
+				command_history = {
+					theme = 'dropdown',
+					layout_config = { width = width_medium, height = 0.7 },
+				},
+				search_history = {
+					theme = 'dropdown',
+					layout_config = { width = width_small, height = 0.6 },
+				},
+				spell_suggest = {
+					theme = 'cursor',
+					layout_config = { width = width_tiny, height = 0.45 },
+				},
+				registers = {
+					theme = 'cursor',
+					layout_config = { width = 0.35, height = 0.4 },
+				},
+				oldfiles = {
+					theme = 'dropdown',
+					previewer = false,
+					layout_config = { width = width_medium, height = 0.7 },
+				},
+				lsp_definitions = {
+					layout_config = { width = width_large, preview_width = 0.55 },
+				},
+				lsp_implementations = {
+					layout_config = { width = width_large, preview_width = 0.55 },
+				},
+				lsp_references = {
+					layout_config = { width = width_large, preview_width = 0.55 },
+				},
+				lsp_code_actions = {
+					theme = 'cursor',
+					previewer = false,
+					layout_config = { width = 0.3, height = 0.4 },
+				},
+				lsp_range_code_actions = {
+					theme = 'cursor',
+					previewer = false,
+					layout_config = { width = 0.3, height = 0.4 },
+				},
+			},
+			extensions = {
+				zoxide = {
+					prompt_title = '[ Zoxide directories ]',
+					mappings = {
+						default = {
+							action = function(selection)
+								vim.cmd.tcd(selection.path)
 							end,
-
-							['p'] = function()
-								local entry = require('telescope.actions.state').get_selected_entry()
-								require('skogix.util.preview').open(entry.path)
+							after_action = function(selection)
+								vim.notify(
+									"Current working directory set to '"
+									.. selection.path
+									.. "'",
+									vim.log.levels.INFO
+								)
 							end,
 						},
-
 					},
 				},
-				pickers = {
-					buffers = {
-						sort_lastused = true,
-						sort_mru = true,
-						layout_config = { width = width_large, height = 0.7 },
-						mappings = {
-							n = {
-								['dd'] = actions.delete_buffer,
-							},
-						},
-					},
-					find_files = {
-						find_command = has_ripgrep and find_args or nil,
-						layout_config = { preview_width = 0.5 },
-					},
-					live_grep = {
-						dynamic_preview_title = true,
-					},
-					colorscheme = {
-						enable_preview = true,
-						layout_config = { preview_width = 0.7 },
-					},
-					highlights = {
-						layout_config = { preview_width = 0.7 },
-					},
-					vim_options = {
-						theme = 'dropdown',
-						layout_config = { width = width_medium, height = 0.7 },
-					},
-					command_history = {
-						theme = 'dropdown',
-						layout_config = { width = width_medium, height = 0.7 },
-					},
-					search_history = {
-						theme = 'dropdown',
-						layout_config = { width = width_small, height = 0.6 },
-					},
-					spell_suggest = {
-						theme = 'cursor',
-						layout_config = { width = width_tiny, height = 0.45 },
-					},
-					registers = {
-						theme = 'cursor',
-						layout_config = { width = 0.35, height = 0.4 },
-					},
-					oldfiles = {
-						theme = 'dropdown',
-						previewer = false,
-						layout_config = { width = width_medium, height = 0.7 },
-					},
-					lsp_definitions = {
-						layout_config = { width = width_large, preview_width = 0.55 },
-					},
-					lsp_implementations = {
-						layout_config = { width = width_large, preview_width = 0.55 },
-					},
-					lsp_references = {
-						layout_config = { width = width_large, preview_width = 0.55 },
-					},
-					lsp_code_actions = {
-						theme = 'cursor',
-						previewer = false,
-						layout_config = { width = 0.3, height = 0.4 },
-					},
-					lsp_range_code_actions = {
-						theme = 'cursor',
-						previewer = false,
-						layout_config = { width = 0.3, height = 0.4 },
-					},
+			},
+			keys = {
+				-- add <leader>fa to find all, including hidden files
+				{
+					"sA",
+					"<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+					desc = "Find All Files (including hidden)",
 				},
-				extensions = {
-					zoxide = {
-						prompt_title = '[ Zoxide directories ]',
-						mappings = {
-							default = {
-								action = function(selection)
-									vim.cmd.tcd(selection.path)
-								end,
-								after_action = function(selection)
-									vim.notify(
-										"Current working directory set to '"
-											.. selection.path
-											.. "'",
-										vim.log.levels.INFO
-									)
-								end,
-							},
-						},
-					},
+				-- add <leader>fl to live grep from git root
+				{
+					"sg",
+					function()
+						myactions.live_grep_from_project_git_root()
+					end,
+					desc = "Live Grep From Project Git Root",
 				},
-			}
-		end,
-	},
+				-- add <leader>fg to find files from project git root
+				{
+					"ss",
+					function()
+						myactions.find_files_from_project_git_root()
+					end,
+					desc = "Find Files From Project Git Root",
+				},
+			},
+			mapping = {
+				i = {
+					["C-v"] = myactions.open_selected_file_in_vertical,
+				},
+			},
+		}
+	end
 }

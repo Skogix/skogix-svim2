@@ -15,13 +15,13 @@ function M.get()
 	---@class PluginLspKeys
 	-- stylua: ignore
 	M._keys =  {
-		{ 'gd', vim.lsp.buf.definition, desc = 'Goto Definition', has = 'definition' },
-		-- { 'gr', vim.lsp.buf.references, desc = 'References' },
-		-- { 'gD', vim.lsp.buf.declaration, desc = 'Goto Declaration' },
-		-- { 'gI', vim.lsp.buf.implementation, desc = 'Goto Implementation' },
-		-- { 'gy', vim.lsp.buf.type_definition, desc = 'Goto Type Definition' },
-		-- { 'gK', vim.lsp.buf.signature_help, desc = 'Signature Help' },
-		-- { '<Leader>ca', vim.lsp.buf.code_action, mode = { 'n', 'x' }, has = 'codeAction', desc = 'Code Action' },
+		{ 'gd', vim.lsp.buf.definition, desc = '[goto] definition', has = 'definition' },
+		{ 'gr', vim.lsp.buf.references, desc = '[goto] references' },
+		{ 'gD', vim.lsp.buf.declaration, desc = '[goto] declaration' },
+		{ 'gI', vim.lsp.buf.implementation, desc = '[goto] implementation' },
+		{ 'gy', vim.lsp.buf.type_definition, desc = '[goto] type definition' },
+		{ 'gK', vim.lsp.buf.signature_help, desc = '[goto]signature help' },
+		{ '<Leader>ca', vim.lsp.buf.code_action, mode = { 'n', 'x' }, has = 'codeAction', desc = '[code] code action' },
 		-- { '<leader>cc', vim.lsp.codelens.run, desc = 'Run Codelens', mode = { 'n', 'x' }, has = 'codeLens' },
 		-- { '<leader>cC', vim.lsp.codelens.refresh, desc = 'Refresh & Display Codelens', mode = { 'n' }, has = 'codeLens' },
 		-- { '<Leader>cA', function()
@@ -71,14 +71,14 @@ function M.get()
 				)
 			end,
 			expr = true,
-			desc = 'Rename',
+			desc = '[code] rename',
 			has = 'rename',
 		}
 	else
 		M._keys[#M._keys + 1] = {
 			'<leader>cr',
 			vim.lsp.buf.rename,
-			desc = 'Rename',
+			desc = '[code] rename',
 			has = 'rename',
 		}
 	end

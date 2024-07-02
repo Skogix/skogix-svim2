@@ -3,3 +3,4 @@ secret
 secrets
 backup
 lazyvim.json
+lua/tmp

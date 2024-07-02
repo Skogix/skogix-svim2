@@ -74,11 +74,11 @@ function M.init()
 
 	-- Add lua/*/plugins/extras as list of "extra" sources
 	LazyVim.extras.sources = {
-		{
-			name = 'LazyVim',
-			desc = 'LazyVim extras',
-			module = 'lazyvim.plugins.extras',
-		},
+		-- {
+		-- 	name = 'LazyVim',
+		-- 	desc = 'LazyVim extras',
+		-- 	module = 'lazyvim.plugins.extras',
+		-- },
 		{
 			name = 'Skogix ',
 			desc = 'Skogix extras',

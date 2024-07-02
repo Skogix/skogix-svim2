@@ -24,7 +24,6 @@ end
 function M.setup(keybinds)
   -- Define your custom keybindings here using the `keybinds` object.
 	local leader = keybinds.leader
-	print("uhetasnhutensahtneuohuseoahtu")
   -- For example:
   keybinds.map('norg', 'n', '<localleader>n', '<cmd>test<cr>', { desc = 'My description' })
   keybinds.map('norg', 'n', '<localleader>N', '<cmd>test<cr>', { desc = 'My description' })

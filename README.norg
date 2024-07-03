@@ -1,9 +1,9 @@
 * sVim 0.6
-- https://github.com/leocus/codeassistant.vim
+	- https://github.com/leocus/codeassistant.vim
 
 * todo
 ** ( ) neorg
--- ( ) keymaps
--- ( ) layout
+	 -- ( ) keymaps
+	 -- ( ) layout
 * done
-- ( ) basic layout
+	- ( ) basic layout

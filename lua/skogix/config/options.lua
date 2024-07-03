@@ -145,7 +145,7 @@ opt.pumheight = 10 -- Maximum number of items to show in the popup menu
 
 opt.showbreak = '⤷  ' -- ↪	⤷
 -- opt.listchars = {
--- 	tab = '',
+-- 	tar = '',
 -- 	extends = '⟫',
 -- 	precedes = '⟪',
 -- 	conceal = '',

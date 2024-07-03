@@ -96,11 +96,6 @@ local normal = {
 			end,
 			"[search] plugins",
 		},
-		-- {
-		--   "<leader>fp",
-		--   function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-		--   desc = "Find Plugin File",
-		-- },
 		["q"] = { "<cmd>Telescope quickfix<cr>", "[search] quickfix list" },
 		["r"] = { "<cmd>Telescope registers<cr>", "[search] registers" },
 		["S"] = {
@@ -254,6 +249,8 @@ local leader = {
 local opts = { prefix = "<leader>", mode = "n" }
 wk.register(leader, opts)
 wk.register(normal, { mode = "n" })
+
+
 
 --
 --

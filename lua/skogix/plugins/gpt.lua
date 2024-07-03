@@ -5,7 +5,7 @@ return {
     config = function()
       require("chatgpt").setup()
 			local wt = require("which-key")
-		wt.register(
+		wt.register({
 		c = {
   name = "ChatGPT",
     c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
@@ -21,7 +21,7 @@ return {
     x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
     r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
     l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
-  }, {prefix = "<leader>"})
+  }, {prefix = "<leader>"}})
     end,
     -- dependencies = {
     --   "MunifTanjim/nui.nvim",

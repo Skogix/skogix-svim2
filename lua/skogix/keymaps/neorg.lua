@@ -8,6 +8,7 @@ function M.globals(wk)
                 name = 'neorg',
                 w = { '<cmd>Neorg workspace work<CR>', '[neorg] work' },
                 s = { '<cmd>Neorg workspace work<CR>', '[neorg] skogix' },
+                v = { '<cmd>Neorg workspace work<CR>', '[neorg] svim' },
                 n = { '<cmd>Neorg keybinds core.dirman.new.note<CR>', '[neorg] new note' },
             },
         },

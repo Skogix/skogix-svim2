@@ -24,7 +24,7 @@ end
 -- Validate if lua/plugins/ or lua/plugins.lua exist.
 local user_path = vim.fn.stdpath("config") .. "/lua"
 local has_user_plugins = vim.uv.fs_stat(user_path .. "/plugins") ~= nil
-	or vim.uv.fs_stat(user_path .. "/plugins.lua") ~= nil
+or vim.uv.fs_stat(user_path .. "/plugins.lua") ~= nil
 
 -- Start lazy.nvim plugin manager.
 require("lazy").setup(vim.tbl_extend("keep", user_lazy_opts, {

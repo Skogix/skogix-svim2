@@ -1,5 +1,5 @@
----@return LazyVimConfig
 return {
+	-- LazyVim framework.
 	{
 		'LazyVim/LazyVim',
 		version = '*',
@@ -65,7 +65,6 @@ return {
 					},
 				},
 				-- Default completion kind symbols.
-				---@type table
 				kinds = {
 					Array         = '󰅪 ', --  󰅪 󰅨 󱃶
 					Boolean       = '󰨙 ', --  ◩ 󰔡 󱃙 󰟡 󰨙

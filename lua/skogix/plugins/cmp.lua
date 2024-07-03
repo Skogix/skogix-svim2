@@ -48,8 +48,6 @@ return {
 					{ name = 'neorg', priority = 40 },
 					{ name = 'nvim_lsp', priority = 50 },
 					{ name = 'path', priority = 40 },
-
-    				{ name = 'nvim_lua', priority = 60  },
 				}, {
 					{ name = 'buffer', priority = 50, keyword_length = 3 },
 					{ name = 'emoji', insert = true, priority = 20 },

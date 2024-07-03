@@ -5,7 +5,7 @@ return {
 		'rafi/theme-loader.nvim',
 		lazy = false,
 		priority = 99,
-		opts = { initial_colorscheme = 'catppuccin' },
+		opts = { initial_colorscheme = 'gruvbox' },
 	},
 	{ 'rafi/awesome-vim-colorschemes', lazy = false },
 	{ 'MunifTanjim/nui.nvim',          lazy = false },

@@ -1,16 +1,9 @@
-* README.norg
-** extras.skogix
-	 - ( ) barbar
-	 - ( ) cmp
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
-	 - ( ) 
+* sVim 0.6
+- https://github.com/leocus/codeassistant.vim
+
+* todo
+** ( ) neorg
+-- ( ) keymaps
+-- ( ) layout
+* done
+- ( ) basic layout

@@ -1,5 +1,4 @@
 return {
-	{
 		"<leader>ht",
 		function()
 			local harpoon = require("harpoon")

@@ -11,6 +11,8 @@ return {
 			'hrsh7th/cmp-path',
 			-- nvim-cmp source for emoji
 			'hrsh7th/cmp-emoji',
+			-- nvim-cmp source for copilot
+  		"zbirenbaum/copilot.lua",
 		},
 		-- Not all LSP servers add brackets when completing a function.
 		-- To better deal with this, LazyVim adds a custom option to cmp,
@@ -48,8 +50,9 @@ return {
 					{ name = 'neorg', priority = 40 },
 					{ name = 'nvim_lsp', priority = 50 },
 					{ name = 'path', priority = 40 },
-
-    				{ name = 'nvim_lua', priority = 60  },
+					{ name = 'copilot', priority = 30 },
+    			{ name = 'nvim_lua', priority = 60  },
+    			-- { name = 'nvim_lsp', priority = 60  },
 				}, {
 					{ name = 'buffer', priority = 50, keyword_length = 3 },
 					{ name = 'emoji', insert = true, priority = 20 },

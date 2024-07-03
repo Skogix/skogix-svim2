@@ -22,7 +22,7 @@ function M.get()
 		{ 'gy', vim.lsp.buf.type_definition, desc = '[goto] type definition' },
 		{ 'gK', vim.lsp.buf.signature_help, desc = '[goto]signature help' },
 		{ '<Leader>ca', vim.lsp.buf.code_action, mode = { 'n', 'x' }, has = 'codeAction', desc = '[code] code action' },
-		-- { '<leader>cc', vim.lsp.codelens.run, desc = 'Run Codelens', mode = { 'n', 'x' }, has = 'codeLens' },
+		{ '<leader>cc', vim.lsp.codelens.run, desc = 'Run Codelens', mode = { 'n', 'x' }, has = 'codeLens' },
 		-- { '<leader>cC', vim.lsp.codelens.refresh, desc = 'Refresh & Display Codelens', mode = { 'n' }, has = 'codeLens' },
 		-- { '<Leader>cA', function()
 		-- 	vim.lsp.buf.code_action({

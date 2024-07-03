@@ -2,8 +2,6 @@
 -- See: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/init.lua
 
 return {
-
-	-----------------------------------------------------------------------------
 	-- Quickstart configurations for the Nvim LSP client
 	{
 		'neovim/nvim-lspconfig',
@@ -13,7 +11,7 @@ return {
 			-- Manage global and project-local settings
 			{ 'folke/neoconf.nvim', cmd = 'Neoconf', config = false, dependencies = { 'nvim-lspconfig' } },
 			-- Neovim setup for init.lua and plugin development
-			{ 'folke/neodev.nvim', opts = {} },
+			{ 'folke/lazydev.nvim', opts = {} },
 			-- Portable package manager for Neovim
 			'williamboman/mason.nvim',
 			-- Mason extension for easier lspconfig integration
@@ -28,12 +26,12 @@ return {
 					underline = true,
 					update_in_insert = false,
 					virtual_text = {
-						spacing = 4,
+						spacing = 2,
 						source = 'if_many',
 						prefix = '●',
 						-- this will set set the prefix to a function that returns the diagnostics icon based on the severity
 						-- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-						-- prefix = 'icons',
+						prefix = 'icons',
 					},
 					severity_sort = true,
 					-- CUSTOM: Diagnostic popup
@@ -56,13 +54,13 @@ return {
 				-- Be aware that you also will need to properly configure your LSP server
 				-- to provide the inlay hints.
 				inlay_hints = {
-					enabled = false,
+					enabled = true,
 				},
 				-- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
 				-- Be aware that you also will need to properly configure your LSP server to
 				-- provide the code lenses.
 				codelens = {
-					enabled = false,
+					enabled = true,
 				},
 				-- Enable lsp cursor word highlighting
 				document_highlight = {
@@ -297,7 +295,6 @@ return {
 			end
 		end,
 	},
-
 	-----------------------------------------------------------------------------
 	{
 		'williamboman/mason.nvim',

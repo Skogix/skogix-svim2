@@ -1,0 +1,23 @@
+
+* TODO released
+** rejäl genomgång
+	 - barbar
+	 - copilot
+	 - copilot-chat
+	 - harpoon
+	 - chatgpt
+	 - ( ) cmp
+	 - ( ) telescope
+	 - treesitter
+* TODO dev
+** plugins
+	 - harpoon2
+	 - neorg
+	 - zen-mode
+		- barbar
+	 - luasnip
+	 - mini.align
+	 - mini.visits
+** bindings TODO
+*** git
+		-- { '<Leader>gg', '<cmd>Neogit<CR>', desc = 'Neogit' },

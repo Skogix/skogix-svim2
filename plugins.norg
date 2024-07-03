@@ -1,0 +1,95 @@
+* core
+	- cmp 
+	- neorg
+	- harpoon
+	- telescope
+* currentnly installed core
+- awesome-vim-colorschemes: This plugin provides a collection of color schemes for Vim.
+- barbar.nvim: This plugin enhances the navigation and organization of buffers in Neovim.
+- cmp-buffer: This is a source for nvim-cmp that provides buffer completion.
+- cmp-emoji: This is a source for nvim-cmp that provides emoji completion.
+- cmp-nvim-lsp: This is a source for nvim-cmp that provides LSP completion.
+- cmp-path: This is a source for nvim-cmp that provides file path completion.
+- copilot-cmp: This is a source for nvim-cmp that provides GitHub Copilot completion.
+- copilot.lua: This is a Lua interface for GitHub Copilot.
+- CopilotChat.nvim: This plugin integrates GitHub Copilot into Neovim for chat-like programming.
+- gitsigns.nvim: This plugin provides Git decorations implemented purely in Lua/Neovim.
+- lazy.nvim: This plugin provides a lazy loading mechanism for Neovim plugins.
+- lazydev.nvim: This plugin provides a development environment for lazy.nvim.
+- LazyVim: This plugin provides a lazy loading mechanism for Vim plugins.
+- lua-utils.nvim: This plugin provides utility functions for Lua in Neovim.
+- neo-tree.nvim: This plugin provides a file explorer tree for Neovim.
+- neorg: This plugin provides a modern and extensible note-taking tool based on the .norg format.
+- neorg-telescope: This plugin integrates Neorg with Telescope for searching .norg files.
+- nui.nvim: This plugin provides a UI component library for Neovim written in Lua.
+- nvim-cmp: This plugin provides a completion engine for Neovim.
+- nvim-nio: This plugin provides non-blocking I/O operations for Neovim.
+- nvim-notify: This plugin provides a fancy notification UI for Neovim.
+- nvim-treesitter: This plugin provides a tree-sitter integration for Neovim.
+- nvim-treesitter-endwise: This plugin provides endwise motions and text objects for Neovim based on tree-sitter.
+- nvim-treesitter-textobjects: This plugin provides text objects for Neovim based on tree-sitter.
+- nvim-ts-autotag: This plugin provides automatic tag closing for HTML, XML, and JSX in Neovim using tree-sitter.
+- nvim-web-devicons: This plugin provides file type icons for Neovim.
+- nvim-window-picker: This plugin provides a window picker for Neovim.
+- pathlib.nvim: This plugin provides a path manipulation library for Neovim.
+- persistence.nvim: This plugin provides session persistence for Neovim.
+- plenary.nvim: This plugin provides a standard library for Neovim in Lua.
+- telescope.nvim: This plugin provides a highly extendable fuzzy finder over lists.
+- theme-loader.nvim: This plugin provides a theme loader for Neovim.
+- vim-matchup: This plugin provides match-up functionality for Vim and Neovim.
+- which-key.nvim: This plugin provides a popup display of keybindings in Neovim.
+
+  Not Loaded (15)
+- ChatGPT.nvim: This plugin integrates OpenAI's GPT-3 model into Neovim for chat-like programming.
+- diffview.nvim: This plugin provides a side-by-side diff viewer for git in Neovim.
+- dooku.nvim: This plugin provides a note-taking tool with markdown-like syntax in Neovim.
+- dressing.nvim: This plugin provides a way to manage and switch between different themes in Neovim.
+- gen.nvim: This plugin provides a code generator for Neovim.
+- harpoon: This plugin provides a mark and navigation system for Neovim.
+- lualine.nvim: This plugin provides a fast and extensible status line for Neovim.
+- luvit-meta: This plugin provides metadata for the Luvit runtime environment.
+- neogen: This plugin provides a way to generate comments for your code in Neovim.
+- neogit: This plugin provides a magit-like interface for git in Neovim.
+- pgsql.vim: This plugin provides syntax highlighting for PostgreSQL files in Vim.
+- vim-log-highlighting: This plugin provides syntax highlighting for log files in Vim.
+- vim-mustache-handlebars: This plugin provides syntax highlighting for Mustache and Handlebars templates in Vim.
+- vim-reason-plus: This plugin provides tooling for ReasonML in Vim.
+- vim-stylus: This plugin provides syntax highlighting for Stylus files in Vim.
+* interesting extras
+** buffer/tabs
+	 - flybuf
+** lookup
+	 - anyjump references (gd, gD)
+** folds
+	 -- ● nvim-ufo 30.91ms  BufReadPost
+** pairs/surround
+    -- ○ vim-sandwich  dss  ds  sa (x)  sa (o)  ir (x)  css  ab (x)  ab (o)  sa  ir (o)  cs 
+** git
+    -- ○ gv.vim  GV 
+** notes
+    -- ○ kiwi.nvim  <leader>zn  <leader>zd  <leader>zo  <leader>zx 
+    -- ○ telekasten.nvim  Telekasten  <leader>zg  <leader>zb  <leader>zl  <leader>zm  <leader>zn  <leader>zo  <leader>zN  <leader>zd  <leader>zt  <leader>zf 
+    -- ○ vimwiki  VimwikiUISelect  VimwikiIndex  <Leader>zo 
+    -- ○ zk-nvim  markdown  ZkMatch  ZkNew  ZkNotes  ZkTags  <leader>zg (x)  <leader>zb  <leader>zl  <leader>zn  <leader>zo  <leader>zt  <leader>zf 
+	** ui
+    -- ● mini.starter 2.31ms  VimEnter
+    -- ● mini.animate 2.93ms  VeryLazy
+    -- ○ mini.map  <Leader>mn 
+    -- ○ outline.nvim  Outline  <leader>cs 
+** hops
+    -- ○ flit.nvim  T (o)  F (x)  f  T  t  f (x)  f (o)  F  F (o)  t (x)  t (o)  T (x) 
+	** 
+    -- ○ overseer.nvim  OverseerTaskAction  OverseerClearCache  OverseerOpen  OverseerClose  OverseerToggle  OverseerSaveBundle  OverseerLoadBundle  OverseerDeleteBundle  OverseerRunCmd  OverseerRun  OverseerInfo  OverseerBuild  OverseerQuickAction  <leader>oi  <leader>ob  <leader>ot  <leader>oc  <leader>ow  <leader>oo  <leader>oq 
+    -- ● refactoring.nvim 21.53ms  BufReadPre
+    -- ● vim-illuminate 2.61ms  LazyFile
+    -- ● vim-repeat 0.16ms  VeryLazy
+    -- ○ vim-startuptime  StartupTime 
+
+
+
+
+
+    -- ● nvim-gtd 6.37ms  BufReadPre
+    -- ● nvim-treesitter-context 1.68ms  LazyFile
+    -- ○ treesj  TSJJoin  TSJSplit  sj  sk 
+    -- ○ vim-fugitive  Gfetch  Gpush  Gclog  Gdiffsplit  G  Git  <leader>gd  <leader>gb  gv.vim

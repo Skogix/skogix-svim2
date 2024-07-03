@@ -1,88 +1,53 @@
 
 local M = {}
 
+
 function M.globals(wk)
     wk.register({
         ['<leader>'] = {
             n = {
                 name = 'neorg',
                 w = { '<cmd>Neorg workspace work<CR>', '[neorg] work' },
-                s = { '<cmd>Neorg workspace work<CR>', '[neorg] skogix' },
-                n = { '<cmd>Neorg keybinds core.dirman.new.note<CR>', '[neorg] new note' },
+                s = { '<cmd>Neorg workspace skogix<CR>', '[neorg] skogix' },
+                v = { '<cmd>Neorg workspace svim<CR>', '[neorg] svim' },
+                n = { '<cmd>Neorg keybind norg core.dirman.new.note<CR>', '[neorg] new note' },
+                ['/'] = { '<cmd>Telescope neorg find_norg_files<CR>', '[neorg] search' },
             },
         },
     }, {})
 end
 
--- return M
--- function M.globals(map)
--- 	map('n', '<leader>nw', '<cmd>Neorg workspace work<CR>', { desc = '[neorg] work' })
--- 	map('n', '<leader>ns', '<cmd>Neorg workspace work<CR>', { desc = '[neorg] skogix' })
--- 	map('n', '<leader>nn', '<cmd>Neorg keybinds core.dirman.new.note<CR>', { desc = '[neorg] new note' })
--- end
-
+---neorg keybinds
+-- ---@param keybinds neorg-keybinds 
 function M.setup(keybinds)
   -- Define your custom keybindings here using the `keybinds` object.
 	local leader = keybinds.leader
   -- For example:
   keybinds.map('norg', 'n', '<localleader>n', '<cmd>test<cr>', { desc = 'My description' })
   keybinds.map('norg', 'n', '<localleader>N', '<cmd>test<cr>', { desc = 'My description' })
-	-- local whichkey = require 'which-key'
-	-- whichkey.register({
-	-- 	['<localleader>'] = {
-	-- 		name = '[Neorg] mode',
-	-- 		m = { name = '[Neorg] mode' },
-	-- 	},
-	-- 	['<leader>'] = {
-	-- 		n = {
-	-- 			name = 'notes',
-	-- 			W = { '<cmd>VimwikiIndex<cr><cmd>VimwikiGenerateLinks<cr><cmd>VimwikiGenerateTagLinks<cr>', 'wiki' },
-	-- 			N = { '<cmd>Neorg index<cr>', 'neorg' },
-	-- 		},
-	-- 	},
-	-- }, {})
-end
-
-return M
--- function KEYBINDS(keybinds)
---             local leader = keybinds.leader
---             -- -- Map all the below keybinds only when the "norg" mode is active
---             -- keybinds.map('norg', 'n', 'sk', '<cmd>Neorg keybind all<cr>', { desc = 'neorg' })
---             -- keybinds.map(
---             --   'norg',
---             --   'n',
---             --   '<localleader>c',
---             --   '<cmd>Neorg keybind all core.dirman.new.note<cr><cmd>Neorg inject-metadata<cr>',
---             --   { desc = '[neorg] create note' }
---             -- )
---             -- keybinds.map(
---             --   'norg',
---             --   'n',
---             --   '<localleader><localleader>',
---             --   '<cmd>Neorg update-metadata<cr><cmd>w<cr><cmd>Neorg index<cr>',
---             --   { desc = '[neorg] save; index' }
---             -- )
---             -- -- keybinds.map('norg', 'n', 'ss', '<cmd>Neorg keybind all core.dirman.new.note<cr>', { desc = 'neorg' })
---             -- keybinds.map('norg', 'n', '<localleader>m', 'which_key_ignore', { desc = 'neorg' })
---             -- keybinds.map_event_to_mode('norg', {
---             --   n = {
---             --     -- Switches the task under the cursor between a select few states
---             --     { '<C-Space>', 'core.qol.todo_items.todo.task_cycle',         opts = { desc = '[neorg] Cycle Task' } },
---             --
---             --     -- Creates a new .norg file to take notes in
---             --     -- { leader .. 'c', 'core.dirman.new.note', opts = { desc = '[neorg] create new note' } },
---             --     { 'ss',        'core.integrations.telescope.find_norg_files', opts = { desc = '[neorg] search neorg files' } },
---             --     -- { 'ss', 'core.integrations.telescope.find_norg_files', opts = { desc = '[neorg] search neorg files' } },
---             --
+  keybinds.map('norg', 'n', '<localleader>n', '<cmd>Neorg index<cr>', { desc = '[neorg] index' })
+  keybinds.map('norg', 'n', '<localleader>c', '<cmd>Neorg keybind all core.dirman.new.note<cr>', { desc = '[neorg] index' })
+  keybinds.map('norg', 'n', '<localleader><localleader>', '<cmd>Neorg update-metadata<cr><cmd>w<cr><cmd>Neorg index<cr>', { desc = '[neorg] index' })
+	keybinds.map('norg', 'n', 'sk', '<cmd>Neorg keybind all<cr>', { desc = '[neorg] search keymaps' })
+	keybinds.map('norg', 'n', '<localleader>m', 'which_key_ignore', { desc = 'neorg' })
+	keybinds.map('norg', 'n', 'ss', '<cmd>Neorg keybind all core.integrations.telescope.find_norg_files<cr>', { desc = '[neorg] search neorg files' })
+	keybinds.map('norg', 'n', '<C-Leader>', '<cmd>Neorg keybind all core.qol.todo_items.todo.task_cycle<cr>', { desc = '[neorg] cycle task'})
+	keybinds.map('norg', 'n', '<C-Space>', 'core.qol.todo_items.todo.task_cycle', { desc = '[neorg] Cycle Task' })
+	keybinds.map('norg', 'n', 'ss', '<cmd>core.integrations.telescope.find_norg_files<cr>', { desc = '[neorg] search neorg files' })
+	keybinds.map('norg', 'n', '<CR>', '<cmd>core.esupports.hop.hop-link<cr>', { desc = '[neorg] Jump to Link' })
+	keybinds.map('norg', 'n', 'gd', '<cmd>core.esupports.hop.hop-link<cr>', { desc = '[neorg] Jump to Link' })
+	keybinds.map('norg', 'n', 'gf', '<cmd>core.esupports.hop.hop-link<cr>', { desc = '[neorg] Jump to Link' })
+	keybinds.map('norg', 'n', 'gF', '<cmd>core.esupports.hop.hop-link<cr>', { desc = '[neorg] Jump to Link' })
+	keybinds.map('norg', 'n', '<C-CR>', '<cmd>core.esupports.hop.hop-link<cr>', 'vsplit', { desc = '[neorg] Jump to Link (Vertical Split)' })
+	keybinds.map('norg', 'n', '>.', '<cmd>core.promo.promote<cr>', { desc = '[neorg] Promote Object (Non-Recursively)' })
+	keybinds.map('norg', 'n', '<,', '<cmd>core.promo.demote<cr>', { desc = '[neorg] Demote Object (Non-Recursively)' })
+	keybinds.map('norg', 'n', '>>', '<cmd>core.promo.promote<cr>', 'nested', { desc = '[neorg] Promote Object (Recursively)' })
+	keybinds.map('norg', 'n', '<<', '<cmd>core.promo.demote<cr>', 'nested', { desc = '[neorg] Demote Object (Recursively)' })
 --             --     -- Hop to the destination of the link under the cursor
 --             --     { '<CR>',      'core.esupports.hop.hop-link',                 opts = { desc = '[neorg] Jump to Link' } },
 --             --     { 'gd',        'core.esupports.hop.hop-link',                 opts = { desc = '[neorg] Jump to Link' } },
 --             --     { 'gf',        'core.esupports.hop.hop-link',                 opts = { desc = '[neorg] Jump to Link' } },
 --             --     { 'gF',        'core.esupports.hop.hop-link',                 opts = { desc = '[neorg] Jump to Link' } },
---             --
---             --     -- Same as `<CR>`, except opens the destination in a vertical split
---             --     { '<C-CR>',    'core.esupports.hop.hop-link',                 'vsplit',                                                    opts = { desc = '[neorg] Jump to Link (Vertical Split)' } },
---             --
 --             --     -- Promote
 --             --     { '>.',        'core.promo.promote',                          opts = { desc = '[neorg] Promote Object (Non-Recursively)' } },
 --             --     { '<,',        'core.promo.demote',                           opts = { desc = '[neorg] Demote Object (Non-Recursively)' } },
@@ -101,6 +66,17 @@ return M
 --             --     { '<C-d>', 'core.promo.demote',                   opts = { desc = '[neorg] Demote Object (Recursively)' } },
 --             --     -- { '<C-CR>', 'core.itero.next-iteration', '<CR>', opts = { desc = '[neorg] Continue Object' } },
 --             --     { '<M-d>', 'core.tempus.insert-date-insert-mode', opts = { desc = '[neorg] Insert Date' } },
+end
+
+return M
+-- function KEYBINDS(keybinds)
+--             local leader = keybinds.leader
+--             -- keybinds.map_event_to_mode('norg', {
+--             --   n = {
+--             --
+--             --     -- Same as `<CR>`, except opens the destination in a vertical split
+--             --     { '<C-CR>',    'core.esupports.hop.hop-link',                 'vsplit',                                                    opts = { desc = '[neorg] Jump to Link (Vertical Split)' } },
+--             --
 --             --   },
 --             -- }, {
 --             --   silent = true,

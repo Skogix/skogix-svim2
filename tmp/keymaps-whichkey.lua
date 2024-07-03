@@ -55,8 +55,9 @@ local normal = {
 		['p'] = { "<cmd>Telescope pickers<cr>", '[search] pickers' },
 		['q'] = { '<cmd>Telescope quickfix<cr>', '[search] quickfix list' },
 		['r'] = { "<cmd>Telescope registers<cr>", '[search] registers' },
-		['s'] = { "<cmd>Telescope git_files<cr>", '[search] files' },
-		['S'] = { "<cmd>Telescope find_files<cr>", '[search] files' },
+		['s'] = { "<cmd>Telescope git_files search_dirs={'~/.config/svim/lua/skogix/'}<cr>", '[search] files' },
+		['S'] = { "<cmd>Telescope find_files search_dirs={'~/.config/svim/lua/skogix/'}<cr>", '[search] files' },
+		-- ['S'] = { "<cmd>Telescope find_files<cr>", '[search] files' },
 		['w'] = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", '[search] workspace symbols' },
 	}, -- }}}
 }

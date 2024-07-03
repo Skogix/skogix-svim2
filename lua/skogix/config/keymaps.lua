@@ -8,9 +8,6 @@ local map = vim.keymap.set
 -- skogix/keymaps/neorg.lua
 -- require('skogix.keymaps.neorg').globals(wk)
 
--- {{{ functions
---- }}}
--- {{{ basics
 -- Copy paste
 map({ 'n', 'x' }, '<leader>y', [["+y]]) -- copy to system clipboard
 map({ 'n', 'x' }, '<leader>p', [["+p]]) -- paste from system clipboard
@@ -26,7 +23,7 @@ map({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true
 -- Set highlight on [search], but clear on pressing <Esc> in normal mode
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.opt.hlsearch = true
--- }}} 
+-- }}}
 -- {{{ terminal
 map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Enter Normal Mode' })
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -90,14 +87,16 @@ wk.register({
 local picker = require('telescope.pickers')
 local telescope = require('telescope')
 local normal = {
-	[']'] = { name = 'next',
--- map('n', ']d', vim.diagnostic.goto_next, { 'Go to next [D]iagnostic message' })
+	[']'] = {
+		name = 'next',
+		-- map('n', ']d', vim.diagnostic.goto_next, { 'Go to next [D]iagnostic message' })
 		["]a"] = { "<cmd>lnext<CR>", "Next Loclist" },
 		["]b"] = { "<cmd>bnext<CR>", "Next Buffer" },
 		["]q"] = { vim.cmd.cnext, "Next Quickfix" },
 	},
-	['['] = { name = 'prev',
--- map('n', '[d', vim.diagnostic.goto_prev, { 'Go to previous [D]iagnostic message' })
+	['['] = {
+		name = 'prev',
+		-- map('n', '[d', vim.diagnostic.goto_prev, { 'Go to previous [D]iagnostic message' })
 		["[b"] = { "<cmd>bprev<CR>", "Previous Buffer" },
 		["[a"] = { "<cmd>lprev<CR>", "Previous Loclist" },
 		["[q"] = { vim.cmd.cprev, "Previous Quickfix" },
@@ -132,12 +131,17 @@ local normal = {
 		['m'] = { "<cmd>Telescope marks<cr>", '[search] marks' },
 		['o'] = { "<cmd>Telescope vim_options<cr>", '[search] neovim options' },
 		['P'] = { "<cmd>Telescope pickers<cr>", '[search] pickers' },
-		['p'] = { function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root}) end, '[search] plugins' },
-      -- {
-      --   "<leader>fp",
-      --   function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-      --   desc = "Find Plugin File",
-      -- },
+		['p'] = { function()
+			require("telescope.builtin").find_files({
+				cwd = require("lazy.core.config").options
+				    .root
+			})
+		end, '[search] plugins' },
+		-- {
+		--   "<leader>fp",
+		--   function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
+		--   desc = "Find Plugin File",
+		-- },
 		['q'] = { '<cmd>Telescope quickfix<cr>', '[search] quickfix list' },
 		['r'] = { "<cmd>Telescope registers<cr>", '[search] registers' },
 		['S'] = { "<cmd>Telescope git_files search_dirs={'~/.config/svim/lua'}<cr>", '[search] lua/skogix files' },
@@ -158,7 +162,8 @@ local leader = {
 			function()
 				local input = vim.fn.input("Quick Chat: ")
 				if input ~= "" then
-					require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+					require("CopilotChat").ask(input,
+						{ selection = require("CopilotChat.select").buffer })
 				end
 			end,
 			"CopilotChat - Quick chat",
@@ -177,7 +182,7 @@ local leader = {
 	t = { -- {{{ t
 		name = 'term',
 		t = { util.Open_lazyterm2, '[term] root' },
-		T = {function() LazyVim.terminal() end, '[term] cwd' },
+		T = { function() LazyVim.terminal() end, '[term] cwd' },
 		cd = { function()
 			local bufdir = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p:h')
 			if bufdir ~= nil and vim.uv.fs_stat(bufdir) then
@@ -206,7 +211,7 @@ local leader = {
 		u = { "<cmd>nohl[search]<CR>", "Hide Search Highlight" },
 		h = { function() LazyVim.toggle.inlay_hints() end, "Toggle Inlay Hints" },
 		T = { function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, "Toggle Treesitter Highlight" },
-		b = { function() LazyVim.toggle('background', false, {'light', 'dark'}) end, "Toggle Background" },
+		b = { function() LazyVim.toggle('background', false, { 'light', 'dark' }) end, "Toggle Background" },
 	}, -- }}}
 	x = { -- {{{ x
 		name = 'diagnostics/quickfix',
@@ -222,9 +227,9 @@ local leader = {
 
 local opts = { prefix = "<leader>", mode = 'n' }
 wk.register(leader, opts)
-wk.register(normal, {mode = 'n'})
+wk.register(normal, { mode = 'n' })
 
-
+return {}
 
 
 

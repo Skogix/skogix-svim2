@@ -1,5 +1,4 @@
 return {
-  {
     "nvim-cmp",
     dependencies = {
       {
@@ -25,7 +24,6 @@ return {
     --     priority = 100,
     --   })
     -- end,
-  },
   -- 	{
   -- 		"zbirenbaum/copilot.lua",
   -- 		cmd = "Copilot",

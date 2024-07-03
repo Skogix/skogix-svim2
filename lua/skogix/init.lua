@@ -1,0 +1,5 @@
+print("[start] loading skogix.init...")
+require("skogix.lazy")
+require("skogix.augroup")
+require("skogix.maps").Global()
+print("[end] loading skogix.init...")

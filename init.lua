@@ -15,4 +15,3 @@ else
 	-- If the override file does not exist, load the default configuration
 	require('skogix.config.lazy')
 end
-

@@ -1,21 +1,16 @@
--- return { 
--- 	"nvim-neorg/neorg", 
--- 	opts = {}
--- }
 return {
-	{
 		'nvim-neorg/neorg',
 		version = '^8',
 		dependencies = {
-	-- {
-			{'nvim-neorg/neorg-telescope'},
-	-- 	dependencies = {
-	-- 	'nvim-telescope/telescope.nvim',
-	-- 		-- dependencies = "hrsh7th/nvim-cmp",
-	-- 		config = function(_, _)
-	-- 			require('telescope').load_extension("neorg-telescope")
-	-- 		end,
-		-- },
+			-- {
+			'nvim-neorg/neorg-telescope'
+			-- 	dependencies = {
+			-- 	'nvim-telescope/telescope.nvim',
+			-- 		-- dependencies = "hrsh7th/nvim-cmp",
+			-- 		config = function(_, _)
+			-- 			require('telescope').load_extension("neorg-telescope")
+			-- 		end,
+			-- },
 			-- {
 			--   'vhyrro/luarocks.nvim',
 			--   priority = 1000, -- We'd like this plugin to load first out of the rest
@@ -58,6 +53,7 @@ return {
 						workspaces = {
 							skogix = '/home/skogix/org/neorg/skogix',
 							work = '/home/skogix/org/neorg/work',
+							svim = '/home/skogix/.config/svim',
 						},
 						index = 'index.norg',
 						default_workspace = 'skogix',
@@ -65,11 +61,10 @@ return {
 				},
 			},
 		},
-	},
+	}
 
 
-		-- 		config = function()
-		-- 			require('neorg-telescope').setup()
-		-- 			require('telescope').load_extension("neorg-telescope")
-		-- 		end
-}
+	-- 		config = function()
+	-- 			require('neorg-telescope').setup()
+	-- 			require('telescope').load_extension("neorg-telescope")
+	-- 		end

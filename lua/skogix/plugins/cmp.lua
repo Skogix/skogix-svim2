@@ -12,16 +12,6 @@ return {
 			-- nvim-cmp source for emoji
 			'hrsh7th/cmp-emoji',
 		},
-		-- Not all LSP servers add brackets when completing a function.
-		-- To better deal with this, LazyVim adds a custom option to cmp,
-		-- that you can configure. For example:
-		--
-		-- ```lua
-		-- opts = {
-		--   auto_brackets = { 'python' }
-		-- }
-		-- ```
-
 		opts = function()
 			vim.api.nvim_set_hl(
 				0,
@@ -33,7 +23,6 @@ return {
 			local Util = require('skogix.util')
 
 			return {
-				-- configure any filetype to auto add brackets
 				auto_brackets = { 'python' },
 				view = {
 					entries = { follow_cursor = true },

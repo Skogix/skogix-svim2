@@ -1,8 +1,8 @@
-	-- local leader = keybinds.leader
 
 local M = {}
 
-function M.globals(wk)
+-- local leader = keybinds.leader
+function M.globals(keybinds)
 	wk.register({
 		['<leader>'] = {
 			n = {

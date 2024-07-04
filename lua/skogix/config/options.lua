@@ -35,6 +35,7 @@ vim.g.deprecation_warnings = false
 local opt = vim.opt
 
 opt.title = true
+vim.opt.hlsearch = true
 opt.titlestring = '%<%F%=%l/%L - nvim'
 opt.mouse = 'nv'          -- Enable mouse in normal and visual modes only
 opt.virtualedit = 'block' -- Position cursor anywhere in visual block
@@ -144,29 +145,6 @@ opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of items to show in the popup menu
 
 opt.showbreak = '⤷  ' -- ↪	⤷
--- opt.listchars = {
--- 	tar = '',
--- 	extends = '⟫',
--- 	precedes = '⟪',
--- 	conceal = '',
--- 	nbsp = '␣',
--- 	trail = '·'
--- }
--- opt.fillchars = {
--- 	foldopen = '', -- 󰅀 
--- 	foldclose = '', -- 󰅂 
--- 	fold = ' ', -- ⸱
--- 	foldsep = ' ',
--- 	diff = '╱',
--- 	eob = ' ',
--- 	horiz = '━',
--- 	horizup = '┻',
--- 	horizdown = '┳',
--- 	vert = '┃',
--- 	vertleft = '┫',
--- 	vertright = '┣',
--- 	verthoriz = '╋',
--- }
 
 opt.statuscolumn = [[%!v:lua.require'lazyvim.util'.ui.statuscolumn()]]
 

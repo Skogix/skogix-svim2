@@ -4,7 +4,7 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = {
-      { "nvim-lua/plenary.nvim" },
+			{ "nvim-lua/plenary.nvim" },
 			{'nvim-telescope/telescope.nvim'},
     },
     keys = bindings,
@@ -27,17 +27,17 @@ return {
 
       ---@diagnostic disable-next-line: missing-parameter
       harpoon.setup(options)
-      -- for i = 1, 4 do
-      --   vim.keymap.set("n", "<leader>" .. i, function()
-      --     require("harpoon"):list():select(i)
-      --   end, { noremap = true, silent = true, desc = "Harpoon select " .. i })
-      -- end
+				for i = 1, 4 do
+					vim.keymap.set("n", "<leader>" .. i, function()
+          require("harpoon"):list():select(i)
+        end, { noremap = true, silent = true, desc = "Harpoon select " .. i })
+      end
 
       -- Telescope integration
-      -- local tele_status_ok, _ = pcall(require, "telescope")
-      -- if not tele_status_ok then
-      --   return
-      -- end
+      local tele_status_ok, _ = pcall(require, "telescope")
+      if not tele_status_ok then
+        return
+      end
 
       local conf = require("telescope.config").values
       local function toggle_telescope(harpoon_files)
@@ -63,7 +63,7 @@ return {
           :find()
       end
 
-      vim.keymap.set("n", "<leader>hT", function()
+      vim.keymap.set("n", "<leader>m", function()
         toggle_telescope(harpoon:list())
       end, { desc = "Open harpoon window" })
     end,

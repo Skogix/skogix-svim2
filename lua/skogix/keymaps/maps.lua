@@ -9,8 +9,8 @@ local m = {
 
 ---@class b {{},{}{}}
 local b = {}
--- basics
-b = {
+
+b = { -- basics
 	{ { m.n }, ";", ":", "command" },
 	{ m.n, "<leader>y", "", "[copy] to system clipboard" },
 	{ m.n, "<leader>p", "", "[paste] to system clipboard" },
@@ -18,20 +18,18 @@ b = {
 	{ m.n, "<C-l>", "<C-w><C-l>", "Move focus to the right window" },
 	{ m.n, "<C-j>", "<C-w><C-j>", "Move focus to the lower window" },
 	{ m.n, "<C-k>", "<C-w><C-k>", "Move focus to the upper window" },
-	-- Set highlight on [search], but clear on pressing <Esc> in normal mode
 	{ m.n, "<Esc>", "<cmd>nohlsearch<CR>", "" },
 }
-vim.opt.hlsearch = true
 
---- --- Enables global hotkeys
---- ---@function
---- function Global()
-for _, a in pairs(b) do
-	vim.keymap.set(a[1], a[2], a[3], { desc = a[4] })
+---@function 
+function Global()
+	for _, a in pairs(b) do
+		vim.keymap.set(a[1], a[2], a[3], { desc = a[4] })
+	end
 end
--- end
--- -- skogix/keymaps/neorg.lua
--- require('skogix.keymaps.neorg').globals(wk)
+
+-- skogix/keymaps/neorg.lua
+require('skogix.keymaps.neorg').globals(wk)
 
 -- which-key integration
 if pcall(require, "which-key") then

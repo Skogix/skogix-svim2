@@ -1,6 +1,4 @@
 -- Define the path to the standard configuration
---
---
 local standardConfigurationPath = vim.fn.stdpath('config')
 
 -- Define the path to the lazy configuration override

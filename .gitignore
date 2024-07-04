@@ -1,3 +1,4 @@
 lazy-lock.json
-lazyvim.json
-backup
+secret
+secrets
+aaa/ai_gpt.lua

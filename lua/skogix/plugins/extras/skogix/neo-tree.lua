@@ -35,8 +35,6 @@ return {
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-		"MunifTanjim/nui.nvim",
-		"s1n7ax/nvim-window-picker",
 	},
 	cmd = "Neotree",
 	-- stylua: ignore
@@ -188,7 +186,6 @@ return {
 
 				["g?"] = "show_help",
 				["<2-LeftMouse>"] = "open",
-				-- ["<CR>"] = "open_with_window_picker",
 				["<CR>"] = "open_tabnew",
 				["l"] = "open_drop",
 				["h"] = "close_node",
@@ -198,6 +195,7 @@ return {
 
 				["s"] = "noop",
 				["sv"] = "open_split",
+				["<C-CR>"] = "open_vsplit",
 				["sg"] = "open_vsplit",
 				["st"] = "open_tabnew",
 

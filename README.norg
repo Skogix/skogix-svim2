@@ -1,9 +1,17 @@
 * sVim 0.6
-- https://github.com/leocus/codeassistant.vim
 
 * todo
 ** ( ) neorg
--- ( ) keymaps
--- ( ) layout
+** ( ) keymaps
+** ( ) layout
+** move keymaps to plugin files
+** 'dhruvasagar/vim-table-mode'
+* general layout
+@table
+	 title | key | description
+
+	 @end
 * done
-- ( ) basic layout
+** ( ) basic layout
+* interesting plugins
+- https://github.com/leocus/codeassistant.vim

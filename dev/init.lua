@@ -1,12 +1,10 @@
 -- Define a module M
----@class LazyVimConfig: LazyVimOptions
 local M = {}
 
 -- This function sets up the configuration for Skogix.
 -- It loads the 'autocmds' configuration file if a file is being opened.
 -- It also creates an autocmd group and a user autocmd that loads 'autocmds' and 'keymaps' configuration files when the 'VeryLazy' pattern is matched.
 function M.setup()
-	print("start config.setup")
 	-- Autocmds can be loaded lazily when not opening a file
 	local lazy_autocmds = vim.fn.argc(-1) == 0
 	if not lazy_autocmds then
@@ -26,10 +24,9 @@ function M.setup()
 	})
 end
 
---This function loads the specified configuration file from lua/skogix/config/* and lua/config/* directories.
----@param name string The name of the configuration file to load. It can be 'autocmds', 'options', or 'keymaps'.
+-- This function loads the specified configuration file from lua/skogix/config/* and lua/config/* directories.
+-- @param name The name of the configuration file to load. It can be 'autocmds', 'options', or 'keymaps'.
 function M.load(name)
-	print("start config.load")
 	local function _load(mod)
 		if require('lazy.core.cache').find(mod)[1] then
 			LazyVim.try(function()
@@ -51,7 +48,6 @@ end
 -- It is called from `lua/skogix/plugins/init.lua`
 M.did_init = false
 function M.init()
-	print("start config.did_init")
 	if M.did_init then
 		return
 	end
@@ -78,11 +74,11 @@ function M.init()
 
 	-- Add lua/*/plugins/extras as list of "extra" sources
 	LazyVim.extras.sources = {
-		{
-			name = 'LazyVim',
-			desc = 'LazyVim extras',
-			module = 'lazyvim.plugins.extras',
-		},
+		-- {
+		-- 	name = 'LazyVim',
+		-- 	desc = 'LazyVim extras',
+		-- 	module = 'lazyvim.plugins.extras',
+		-- },
 		{
 			name = 'Skogix ',
 			desc = 'Skogix extras',
@@ -94,6 +90,7 @@ function M.init()
 			module = 'plugins.extras',
 		},
 	}
+
 end
 
 return M

@@ -16,73 +16,99 @@ clone("LazyVim/LazyVim.git", vim.fn.stdpath("data") .. "/lazy/LazyVim")
 
 -- Load user options from lua/config/setup.lua
 local user_lazy_opts = {}
-local ok, user_setup = pcall(require, "config.setup")
+local ok, user_setup = pcall(require, "skogix.config.setup")
 if ok and user_setup.lazy_opts then
 	user_lazy_opts = user_setup.lazy_opts() or {}
 end
 
 -- Validate if lua/plugins/ or lua/plugins.lua exist.
 local user_path = vim.fn.stdpath("config") .. "/lua"
+print(user_path)
 local has_user_plugins = vim.uv.fs_stat(user_path .. "/plugins") ~= nil
     or vim.uv.fs_stat(user_path .. "/plugins.lua") ~= nil
-
+vim.print(user_path)
+vim.print(has_user_plugins)
 -- Start lazy.nvim plugin manager.
-require("lazy").setup(vim.tbl_extend("keep", user_lazy_opts, {
+-- require("lazy").setup(vim.tbl_extend("keep", user_lazy_opts, {
+-- require("lazy").setup({
+-- require("skogix.config").setup({
+-- "/home/skogix/.local/share/svim/lazy/lazy.nvim/lua/lazy/core/plugin.lua
+require("lazy").setup({
+	print("start config.lazy.lazy.setup"),
 	spec = {
-		{ import = "skogix.plugins.lazyvim" },
+		--{ "LazyVim/LazyVim",         import = "lazyvim.plugins" },
+		{ "LazyVim/LazyVim" },
+		-- { import = "lazy.community" },
+		{ import = "lazyvim.plugins" },
+		-- { import = "lazyvim.plugins.types" },
+		{ import = "plugins" },
 		{ import = "skogix.plugins" },
-		-- { import = "skogix.keymaps" },
-		-- { import = "skogix.plugins.todo" },
-		-- { import = "skogix.plugins.init" },
-		-- { import = "skogix.plugins.lsp" },
-		-- { import = "skogix.plugins.cmp" },
-		-- { import = "skogix.plugins.neo-tree" },
-		-- { import = "skogix.plugins.treesitter" },
-		-- { import = "skogix.plugins.telescope" },
-		-- { import = "skogix.plugins.which-key" },
-		-- { import = "skogix.plugins.harpoon" },
-		-- { import = "skogix.plugins.git" },
-		-- { import = "skogix.plugins.colorscheme" },
-		-- { import = "skogix.plugins.neorg" },
-		{ import = "lazyvim.plugins.xtras" },
-		has_user_plugins and { import = "plugins" } or nil,
+
+
+
+
+		-- { import = "plugins" },
+		-- { import = "skogix.plugins" },
+		-- { import = "dev.plugins" },
+		-- { import = "dev.keymaps" },
+		-- { import = "dev.plugins.todo" },
+		-- { import = "dev.plugins.init" },
+		-- { import = "dev.plugins.cmp" },
+		-- { import = "dev.plugins.neo-tree" },
+		-- { import = "dev.plugins.treesitter" },
+		-- { import = "dev.plugins.telescope" },
+		-- { import = "dev.plugins.which-key" },
+		-- { import = "dev.plugins.harpoon" },
+		-- { import = "dev.plugins.git" },
+		-- { import = "dev.plugins.colorscheme" },
+		-- { import = "dev.plugins.neorg" },
+		-- { import = "lazyvim.plugins.xtras" },
+		-- has_user_plugins and { import = "plugins" } or nil,
 	},
-	concurrency = vim.uv.available_parallelism() * 2,
-	defaults = { lazy = true, version = false },
-	dev = { path = vim.fn.stdpath("config") .. "/dev" },
-	install = { missing = true, colorscheme = {} },
-	checker = { enabled = true, notify = false },
-	change_detection = { notify = false },
-	ui = { border = "rounded" },
-	diff = { cmd = "terminal_git" },
-	pkg = {
-		enabled = true,
-		cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
-		versions = true, -- Honor versions in pkg sources
-		-- the first package source that is found for a plugin will be used.
-		sources = {
-			"lazy",
-			"rockspec",
-			"packspec",
-		},
-	},
-	rocks = {
-		root = vim.fn.stdpath("data") .. "/lazy-rocks",
-		server = "https://nvim-neorocks.github.io/rocks-binaries/",
-	},
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"vimballPlugin",
-				"matchit",
-				"matchparen",
-				"2html_plugin",
-				"tarPlugin",
-				"netrwPlugin",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
-}))
+	-- concurrency = vim.uv.available_parallelism() * 2,
+	-- defaults = { lazy = false, version = false },
+	-- dev = { path = vim.fn.stdpath("config") .. "/dev" },
+	install = { missing = false, colorscheme = {"gruvbox"} },
+	-- checker = { enabled = true, notify = false },
+	-- change_detection = { notify = false },
+	-- ui = { border = "rounded" },
+	-- diff = { cmd = "terminal_git" },
+	-- pkg = {
+	-- 	enabled = true,
+	-- 	cache = vim.fn.stdpath("state") .. "/lazy/pkg-cache.lua",
+	-- 	versions = true, -- Honor versions in pkg sources
+	-- 	-- the first package source that is found for a plugin will be used.
+	-- 	sources = {
+	-- 		"lazy",
+	-- 		"rockspec",
+	-- 		"packspec",
+	-- 	},
+	-- },
+	-- rocks = {
+	-- 	root = vim.fn.stdpath("data") .. "/lazy-rocks",
+	-- 	server = "https://nvim-neorocks.github.io/rocks-binaries/",
+	-- },
+	-- performance = {
+	-- 	rtp = {
+	-- 		disabled_plugins = {
+	-- 			"gzip",
+	-- 			"vimballPlugin",
+	-- 			"matchit",
+	-- 			"matchparen",
+	-- 			"2html_plugin",
+	-- 			"tarPlugin",
+	-- 			"netrwPlugin",
+	-- 			"tutor",
+	-- 			"zipPlugin",
+	-- 		},
+	-- 	},
+	-- },
+})
+
+
+local skogix = require("skogix.config.init")
+local skogix2 = require("skogix.config.rocks-nvim")
+vim.print("skogix:")
+vim.print(skogix)
+vim.print("skogix2:")
+vim.print(skogix2)

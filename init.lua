@@ -1,4 +1,4 @@
--- require('skogix.config.lazy')
+--  require('skogix.config.lazy')
 -- Define the path to the standard configuration
 -- local stdPath = vim.fn.stdpath("data")
 
@@ -17,15 +17,20 @@
 
 -- require('/home/skogix/.local/share/svim/lazy/lazy.nvim/lua/lazy/core/config.lua')
 
-require("user.globals")
-require("user.keymaps").setup()
-require("user.autocommands")
+-- require("user.globals")
+-- require("user.keymaps").setup()
+-- require("user.autocommands")
+--
+-- require("user.change_cwd")
+-- require("user.find_where_included")
+-- require("user.diagnostics")
+-- :lua require'dap'.toggle_breakpoint()
 
-require("user.change_cwd")
-require("user.find_where_included")
-require("user.diagnostics")
+local imports = require 'core.imports'
+vim.print(imports)
 require("core")
-require("user")
+
+-- require("user")
 -- Check if the lazy configuration override file exists
 -- if vim.eventLoop.fs_stat(stdpathLazyNvimConfig) then
 -- If the override file exists, load it to override the default configuration

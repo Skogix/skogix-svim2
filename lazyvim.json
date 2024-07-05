@@ -1,18 +1,8 @@
 {
   "extras": [
-    "skogix.plugins.extras.coding.luasnip",
-    "skogix.plugins.extras.colorscheme.catppuccin",
-    "skogix.plugins.extras.colorscheme.cyberdream",
-    "skogix.plugins.extras.colorscheme.github",
-    "skogix.plugins.extras.colorscheme.juliana",
-    "skogix.plugins.extras.colorscheme.kanagawa",
-    "skogix.plugins.extras.git.fugitive",
-    "skogix.plugins.extras.skogix.barbar",
-    "skogix.plugins.extras.skogix.cmp-git",
-    "skogix.plugins.extras.skogix.copilot",
-    "skogix.plugins.extras.skogix.copilot-chat",
-    "skogix.plugins.extras.skogix.harpoon",
-    "skogix.plugins.extras.skogix.markdown"
+    "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.dap.nlua",
+    "lazyvim.plugins.extras.test.core"
   ],
   "news": [
 

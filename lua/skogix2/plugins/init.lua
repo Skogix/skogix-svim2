@@ -17,4 +17,5 @@ return {
 	{ "folke/lazy.nvim", version = "*" },
 	-- Lua functions library
 	{ "nvim-lua/plenary.nvim", lazy = false },
+
 }

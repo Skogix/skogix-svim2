@@ -54,12 +54,8 @@ end
 
 -- only set clipboard if not in ssh, to make sure the OSC 52
 -- integration works automatically. Requires Neovim >= 0.10.0
-<<<<<<< ours
 -- opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
-=======
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
->>>>>>> theirs
 
 opt.completeopt = 'menu,menuone,noinsert'
 opt.wildmode = 'longest:full,full'

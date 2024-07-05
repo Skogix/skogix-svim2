@@ -43,7 +43,6 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 		end
 	end,
 })
-<<<<<<< ours
 
 -- Create an autocmd group for yank
 local yankGroup = createUniqueAutocmdGroup('Yank')
@@ -57,5 +56,3 @@ if vim.fn.has('wsl') == 1 then
     end,
   })
 end
-=======
->>>>>>> theirs

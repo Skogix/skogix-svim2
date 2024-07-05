@@ -85,6 +85,11 @@ function M.init()
       module = 'lazyvim.plugins.extras',
     },
     {
+      name = 'LazyVim',
+      desc = 'LazyVim extras2',
+      module = 'lazyvim.xtras',
+    },
+    {
       name = 'Skogix ',
       desc = 'Skogix extras',
       module = 'skogix.plugins.extras',

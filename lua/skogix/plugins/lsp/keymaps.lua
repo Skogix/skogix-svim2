@@ -22,6 +22,7 @@ function M.get()
 		{ 'gy', vim.lsp.buf.type_definition, desc = '[goto] type definition' },
 		{ 'gK', vim.lsp.buf.signature_help, desc = '[goto]signature help' },
 		{ '<Leader>ca', vim.lsp.buf.code_action, mode = { 'n', 'x' }, has = 'codeAction', desc = '[code] code action' },
+<<<<<<< ours
 		{ '<leader>cc', vim.lsp.codelens.run, desc = 'Run Codelens', mode = { 'n', 'x' }, has = 'codeLens' },
 		{ '<leader>cC', vim.lsp.codelens.refresh, desc = 'Refresh & Display Codelens', mode = { 'n' }, has = 'codeLens' },
 		{ '<Leader>cA', function()
@@ -58,6 +59,44 @@ function M.get()
 		{ '<Leader>fwa', vim.lsp.buf.add_workspace_folder, desc = 'Show Workspace Folders' },
 		{ '<Leader>fwr', vim.lsp.buf.remove_workspace_folder, desc = 'Remove Workspace Folder' },
 		{ '<Leader>fwl', '<cmd>lua =vim.lsp.buf.list_workspace_folders()<CR>', desc = 'List Workspace Folders' },
+=======
+		-- { '<leader>cc', vim.lsp.codelens.run, desc = 'Run Codelens', mode = { 'n', 'x' }, has = 'codeLens' },
+		-- { '<leader>cC', vim.lsp.codelens.refresh, desc = 'Refresh & Display Codelens', mode = { 'n' }, has = 'codeLens' },
+		-- { '<Leader>cA', function()
+		-- 	vim.lsp.buf.code_action({
+		-- 		context = {
+		-- 			only = { 'source' },
+		-- 			diagnostics = {},
+		-- 		},
+		-- 	})
+		-- end, desc = 'Source Action', has = 'codeAction' },
+		--
+		-- { ']]', function() LazyVim.lsp.words.jump(vim.v.count1) end, has = 'documentHighlight',
+		-- 	desc = 'Next Reference', cond = function() return LazyVim.lsp.words.enabled end },
+		-- { '[[', function() LazyVim.lsp.words.jump(-vim.v.count1) end, has = 'documentHighlight',
+		-- 	desc = 'Prev Reference', cond = function() return LazyVim.lsp.words.enabled end },
+		-- { '<a-n>', function() LazyVim.lsp.words.jump(vim.v.count1, true) end, has = 'documentHighlight',
+		-- 	desc = 'Next Reference', cond = function() return LazyVim.lsp.words.enabled end },
+		-- { '<a-p>', function() LazyVim.lsp.words.jump(-vim.v.count1, true) end, has = 'documentHighlight',
+		-- 	desc = 'Prev Reference', cond = function() return LazyVim.lsp.words.enabled end },
+		--
+		-- { 'K', function()
+		-- 	-- Show hover documentation or folded lines.
+		-- 	local winid = LazyVim.has('nvim-ufo')
+		-- 		and require('ufo').peekFoldedLinesUnderCursor() or nil
+		-- 	if not winid then
+		-- 		vim.lsp.buf.hover()
+		-- 	end
+		-- end },
+		--
+		-- { '<leader>cil', '<cmd>LspInfo<cr>', desc = 'LSP info popup' },
+		-- { '<leader>csf', M.formatter_select, mode = { 'n', 'x' }, desc = 'Formatter Select' },
+		-- { '<Leader>csi', vim.lsp.buf.incoming_calls, desc = 'Incoming calls' },
+		-- { '<Leader>cso', vim.lsp.buf.outgoing_calls, desc = 'Outgoing calls' },
+		-- { '<Leader>fwa', vim.lsp.buf.add_workspace_folder, desc = 'Show Workspace Folders' },
+		-- { '<Leader>fwr', vim.lsp.buf.remove_workspace_folder, desc = 'Remove Workspace Folder' },
+		-- { '<Leader>fwl', '<cmd>lua =vim.lsp.buf.list_workspace_folders()<CR>', desc = 'List Workspace Folders' },
+>>>>>>> theirs
 	}
 	if LazyVim.has('inc-rename.nvim') then
 		M._keys[#M._keys + 1] = {

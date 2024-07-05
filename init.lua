@@ -1,3 +1,4 @@
+<<<<<<< ours
 -- require('skogix.config.lazy')
 -- Define the path to the standard configuration
 -- local stdPath = vim.fn.stdpath("data")
@@ -17,8 +18,15 @@
 
 -- require('/home/skogix/.local/share/svim/lazy/lazy.nvim/lua/lazy/core/config.lua')
 
-require("core")
+require("user.globals")
+require("user.keymaps").setup()
+require("user.autocommands")
 
+require("user.change_cwd")
+require("user.find_where_included")
+require("user.diagnostics")
+require("core")
+require("user")
 -- Check if the lazy configuration override file exists
 -- if vim.eventLoop.fs_stat(stdpathLazyNvimConfig) then
 -- If the override file exists, load it to override the default configuration
@@ -28,3 +36,22 @@ require("core")
 -- If the override file does not exist, load the default configuration
 -- end
 -- require('skogix.config.lazy')
+=======
+-- Define the path to the standard configuration
+local standardConfigurationPath = vim.fn.stdpath('config')
+
+-- Define the path to the lazy configuration override
+local lazyConfigurationOverridePath = standardConfigurationPath .. '/lua/config/lazy.lua'
+
+-- Use the existing event loop or initialize a new one
+vim.eventLoop = vim.eventLoop or vim.loop
+
+-- Check if the lazy configuration override file exists
+if vim.eventLoop.fs_stat(lazyConfigurationOverridePath) then
+	-- If the override file exists, load it to override the default configuration
+	require('config.lazy')
+else
+	-- If the override file does not exist, load the default configuration
+	require('skogix.config.lazy')
+end
+>>>>>>> theirs

@@ -8,7 +8,7 @@ return {
 		cond = true,
 		config = function(_, opts)
 			-- Load lua/skogix/config/*
-			require('skogix.config').setup()
+			require('core.config').setup()
 
 			-- Setup lazyvim, but don't load any lazyvim/config/* files.
 			package.loaded['lazyvim.config.options'] = true

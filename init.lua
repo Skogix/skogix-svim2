@@ -17,7 +17,7 @@
 
 -- require('/home/skogix/.local/share/svim/lazy/lazy.nvim/lua/lazy/core/config.lua')
 
-require("skogix.config.lazy")
+require("core")
 
 -- Check if the lazy configuration override file exists
 -- if vim.eventLoop.fs_stat(stdpathLazyNvimConfig) then
